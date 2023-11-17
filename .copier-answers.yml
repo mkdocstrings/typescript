@@ -1,0 +1,20 @@
+# Changes here will be overwritten by Copier
+_commit: 0.2.1
+_src_path: gh:mkdocstrings/handler-template
+author_email: pawamoy@pm.me
+author_fullname: Timothée Mazzucotelli
+author_username: pawamoy
+copyright_date: '2023'
+copyright_holder: Timothée Mazzucotelli
+copyright_holder_email: pawamoy@pm.me
+copyright_license: ISC License
+insiders: true
+language: TypeScript
+project_description: A Typescript handler for mkdocstrings.
+project_name: mkdocstrings-typescript
+python_package_distribution_name: mkdocstrings-typescript
+python_package_import_name: typescript
+repository_name: typescript
+repository_namespace: mkdocstrings
+repository_provider: github.com
+
