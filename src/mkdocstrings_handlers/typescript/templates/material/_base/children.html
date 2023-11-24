@@ -1,0 +1,29 @@
+{% if obj.kind.value == "module" and obj.exports %}
+  {% with children = obj.exports %}
+    {% if children %}
+      {{ log.debug("Rendering children of " + obj.path) }}
+      <div class="doc doc-children">
+        {% for obj in children %}
+          {% include "dispatch.html" with context %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+{% elif obj.groups %}
+  {{ log.debug("Rendering groups of " + obj.path) }}
+  <div class="doc doc-children">
+    {% for group in obj.resolved_groups %}
+      <b>{{ group.title }}</b>
+      {% for obj in group.children %}
+        {% include "dispatch.html" with context %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% elif obj.children %}
+  {{ log.debug("Rendering children of " + obj.path) }}
+  <div class="doc doc-children">
+    {% for obj in obj.children %}
+      {% include "dispatch.html" with context %}
+    {% endfor %}
+  </div>
+{% endif %}

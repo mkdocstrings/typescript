@@ -28,7 +28,8 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "mkdocstrings>=0.18",
+    "mkdocstrings>=0.24",
+    "griffe-typedoc>=0.0",
 ]
 
 [project.urls]

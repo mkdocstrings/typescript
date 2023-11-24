@@ -1,1 +1,6 @@
-goals: {}
+goals:
+  2000:
+    name: FusionDrive Ejection Configuration
+    features:
+    - name: "[Project] A TypeScript handler for mkdocstrings"
+      ref: /

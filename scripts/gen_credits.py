@@ -25,10 +25,34 @@ pdm = pyproject["tool"]["pdm"]
 lock_data = toml.load(project_dir / "pdm.lock")
 lock_pkgs = {pkg["name"].lower(): pkg for pkg in lock_data["package"]}
 project_name = project["name"]
-regex = re.compile(r"(?P<dist>[\w.-]+)(?P<spec>.*)$")
+with project_dir.joinpath("devdeps.txt").open() as devdeps_file:
+    devdeps = [line.strip() for line in devdeps_file if not line.startswith("-e")]
+
+PackageMetadata = Dict[str, Union[str, Iterable[str]]]
+Metadata = Dict[str, PackageMetadata]
 
 
-def _get_license(pkg_name: str) -> str:
+def _merge_fields(metadata: dict) -> PackageMetadata:
+    fields = defaultdict(list)
+    for header, value in metadata.items():
+        fields[header.lower()].append(value.strip())
+    return {
+        field: value if len(value) > 1 or field in ("classifier", "requires-dist") else value[0]
+        for field, value in fields.items()
+    }
+
+
+def _norm_name(name: str) -> str:
+    return name.replace("_", "-").replace(".", "-").lower()
+
+
+def _requirements(deps: list[str]) -> dict[str, Requirement]:
+    return {_norm_name((req := Requirement(dep)).name): req for dep in deps}
+
+
+def _extra_marker(req: Requirement) -> str | None:
+    if not req.marker:
+        return None
     try:
         data = metadata(pkg_name)
     except PackageNotFoundError:
@@ -48,7 +72,32 @@ def _get_license(pkg_name: str) -> str:
     return license_name or "?"
 
 
-def _get_deps(base_deps: Mapping[str, Mapping[str, str]]) -> dict[str, dict[str, str]]:
+def _get_metadata() -> Metadata:
+    metadata = {}
+    for pkg in distributions():
+        name = _norm_name(pkg.name)  # type: ignore[attr-defined,unused-ignore]
+        metadata[name] = _merge_fields(pkg.metadata)  # type: ignore[arg-type]
+        metadata[name]["spec"] = set()
+        metadata[name]["extras"] = set()
+        metadata[name].setdefault("summary", "")
+        _set_license(metadata[name])
+    return metadata
+
+
+def _set_license(metadata: PackageMetadata) -> None:
+    license_field = metadata.get("license-expression", metadata.get("license", ""))
+    license_name = license_field if isinstance(license_field, str) else " + ".join(license_field)
+    check_classifiers = license_name in ("UNKNOWN", "Dual License", "") or license_name.count("\n")
+    if check_classifiers:
+        license_names = []
+        for classifier in metadata["classifier"]:
+            if classifier.startswith("License ::"):
+                license_names.append(classifier.rsplit("::", 1)[1].strip())
+        license_name = " + ".join(license_names)
+    metadata["license"] = license_name or "?"
+
+
+def _get_deps(base_deps: dict[str, Requirement], metadata: Metadata) -> Metadata:
     deps = {}
     for dep in base_deps:
         parsed = regex.match(dep).groupdict()  # type: ignore[union-attr]

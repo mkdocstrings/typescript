@@ -1,0 +1,68 @@
+{{ log.debug("Rendering " + property.path) }}
+
+<div class="doc doc-object doc-property">
+  {% with obj = property, html_id = property.path %}
+  
+    {% if root %}
+      {% set show_full_path = config.show_root_full_path %}
+      {% set root_members = True %}
+    {% elif root_members %}
+      {% set show_full_path = config.show_root_members_full_path or config.show_object_full_path %}
+      {% set root_members = False %}
+    {% else %}
+      {% set show_full_path = config.show_object_full_path %}
+    {% endif %}
+  
+    {% set property_name = property.path if show_full_path else property.name %}
+  
+    {% if not root or config.show_root_heading %}
+      {% filter heading(
+          heading_level,
+          role="property",
+          id=html_id,
+          class="doc doc-heading",
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-property"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + property.name,
+      ) %}
+  
+        {% block heading scoped %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-property"></code>{% endif %}
+          {% if config.separate_signature %}
+            <span class="doc doc-object-name doc-property-name">{{ property_name }}</span>
+          {% else %}
+            <code>{{ property_name }}</code>
+          {% endif %}
+        {% endblock heading %}
+  
+      {% endfilter %}
+  
+    {% else %}
+      {% if config.show_root_toc_entry %}
+        {% filter heading(heading_level,
+            role="property",
+            id=html_id,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-property"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + property.name,
+            hidden=True,
+        ) %}
+        {% endfilter %}
+      {% endif %}
+      {% set heading_level = heading_level - 1 %}
+    {% endif %}
+  
+    <div class="doc doc-contents {% if root %}first{% endif %}">
+      {% block contents scoped %}
+        {% block docstring scoped %}
+          {% if property.comment %}
+            {{ property.comment.markdown|convert_markdown(heading_level, html_id) }}
+          {% endif %}
+        {% endblock docstring %}
+        {% block children scoped %}
+          {% set root = False %}
+          {% set heading_level = heading_level + 1 %}
+          {% include "children.html" with context %}
+        {% endblock children %}
+      {% endblock contents %}
+    </div>
+  
+  {% endwith %}
+  </div>
+  

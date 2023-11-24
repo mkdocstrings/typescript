@@ -4,14 +4,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, ClassVar, Mapping, MutableMapping
 
-from mkdocs.exceptions import PluginError
+from markdown import Markdown
 from mkdocstrings.handlers.base import BaseHandler, CollectionError, CollectorItem
 from mkdocstrings.loggers import get_logger
 
-if TYPE_CHECKING:
-    from markdown import Markdown
 
+from griffe_typedoc.loader import load as load_typedoc
+from griffe_typedoc.logger import patch_loggers
+from griffe_typedoc.dataclasses import ReflectionKind
 
+patch_loggers(get_logger)
 logger = get_logger(__name__)
 
 
@@ -31,9 +33,53 @@ class TypescriptHandler(BaseHandler):
     """The configuration used to collect item during autorefs fallback."""
 
     default_config: ClassVar[dict] = {
+        "base_file_path": ".",
+        "docstring_style": "google",
+        "docstring_options": {},
+        "show_symbol_type_heading": False,
+        "show_symbol_type_toc": False,
         "show_root_heading": False,
         "show_root_toc_entry": True,
+        "show_root_full_path": True,
+        "show_root_members_full_path": False,
+        "show_object_full_path": False,
+        "show_category_heading": False,
+        "show_if_no_docstring": False,
+        "show_signature": True,
+        "show_signature_annotations": False,
+        "signature_crossrefs": False,
+        "separate_signature": False,
+        "line_length": 60,
+        "merge_init_into_class": False,
+        "show_docstring_attributes": True,
+        "show_docstring_functions": True,
+        "show_docstring_classes": True,
+        "show_docstring_modules": True,
+        "show_docstring_description": True,
+        "show_docstring_examples": True,
+        "show_docstring_other_parameters": True,
+        "show_docstring_parameters": True,
+        "show_docstring_raises": True,
+        "show_docstring_receives": True,
+        "show_docstring_returns": True,
+        "show_docstring_warns": True,
+        "show_docstring_yields": True,
+        "show_source": True,
+        "show_bases": True,
+        "show_submodules": False,
+        "group_by_category": True,
         "heading_level": 2,
+        "members_order": "alphabetical",
+        "docstring_section_style": "table",
+        "members": None,
+        "inherited_members": False,
+        "filters": ["!^_[^_]"],
+        "annotations_path": "brief",
+        "preload_modules": None,
+        "allow_inspection": True,
+        "summary": False,
+        "unwrap_annotated": False,
+        "parameter_headings": False,
     }
     """The default configuration options.
 
@@ -43,6 +89,11 @@ class TypescriptHandler(BaseHandler):
     **`show_root_toc_entry`** | `bool` | If the root heading is not shown, at least add a ToC entry for it. | `True`
     **`heading_level`** | `int` | The initial heading level to use. | `2`
     """
+
+    def __init__(self, *args, **kwargs) -> None:
+        config_file_path = kwargs.pop("config_file_path", None)
+        super().__init__(*args, **kwargs)
+        self._collected = {}
 
     def collect(self, identifier: str, config: MutableMapping[str, Any]) -> CollectorItem:  # noqa: ARG002
         """Collect data given an identifier and selection configuration.
@@ -60,8 +111,22 @@ class TypescriptHandler(BaseHandler):
         Returns:
             Anything you want, as long as you can feed it to the `render` method.
         """
-        raise CollectionError("Implement me!")
-
+        if config.get("fallback", False):
+            raise CollectionError("Not loading modules during fallback")
+        if identifier not in self._collected:
+            data = load_typedoc(["typedoc"])
+            if data.kind is ReflectionKind.PROJECT:
+                self._collected.update({module.name: module for module in data.children})
+            else:
+                self._collected[data.name] = data
+            logger.debug(f"Collected {', '.join(self._collected.keys())}")
+        if identifier in self._collected:
+            for child in self._collected[identifier].children:
+                if child.kind is ReflectionKind.MODULE and child.name == "index":
+                    return child
+            return self._collected[identifier]
+        raise CollectionError(f"Could not collect {identifier}")
+        
     def render(self, data: CollectorItem, config: Mapping[str, Any]) -> str:  # noqa: ARG002
         """Render a template using provided data and configuration options.
 
@@ -73,13 +138,12 @@ class TypescriptHandler(BaseHandler):
         Returns:
             The rendered template as HTML.
         """
-        # final_config = {**self.default_config, **config}
-        # heading_level = final_config["heading_level"]
-        # template = self.env.get_template(f"{data...}.html")
-        # return template.render(
-        #     **{"config": final_config, data...: data, "heading_level": heading_level, "root": True},
-        # )
-        raise PluginError("Implement me!")
+        final_config = {**self.default_config, **config}
+        heading_level = final_config["heading_level"]
+        template = self.env.get_template(f"module.html")
+        return template.render(
+            **{"config": final_config, "module": data, "heading_level": heading_level, "root": True},
+        )
 
     def update_env(self, md: Markdown, config: dict) -> None:
         """Update the Jinja environment with any custom settings/filters/options for this handler.
@@ -116,7 +180,5 @@ def get_handler(
         handler="typescript",
         theme=theme,
         custom_templates=custom_templates,
-        # To pass the following argument,
-        # you'll need to override the handler's __init__ method.
-        # config_file_path=config_file_path,
+        config_file_path=config_file_path,
     )
