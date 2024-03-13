@@ -60,17 +60,31 @@ data_source = "docs/insiders/goals.yml"
 ```
 
 <!-- blacken-docs:off -->
-```python exec="1" session="insiders"
+```python exec="1" session="insiders" idprefix=""
 --8<-- "scripts/insiders.py"
 
-print(
-    f"""The moment you <a href="#how-to-become-a-sponsor">become a sponsor</a>, you'll get **immediate
-    access to {len(unreleased_features)} additional features** that you can start using right away, and
-    which are currently exclusively available to sponsors:\n"""
-)
+if unreleased_features:
+    print(
+        "The moment you [become a sponsor](#how-to-become-a-sponsor), you'll get **immediate "
+        f"access to {len(unreleased_features)} additional features** that you can start using right away, and "
+        "which are currently exclusively available to sponsors:\n"
+    )
 
-for feature in unreleased_features:
-    feature.render(badge=True)
+    for feature in unreleased_features:
+        feature.render(badge=True)
+
+    print(
+        "\n\nThese are just the features related to this project. "
+        "[See the complete feature list on the author's main Insiders page](https://pawamoy.github.io/insiders/#whats-in-it-for-me)."
+    )
+else:
+    print(
+        "The moment you [become a sponsor](#how-to-become-a-sponsor), you'll get immediate "
+        "access to all released features that you can start using right away, and "
+        "which are exclusively available to sponsors. At this moment, there are no "
+        "Insiders features for this project, but checkout the [next funding goals](#goals) "
+        "to see what's coming, as well as **[the feature list for all Insiders projects](https://pawamoy.github.io/insiders/#whats-in-it-for-me).**"
+    )
 ```
 <!-- blacken-docs:on -->
 
@@ -83,7 +97,7 @@ You can use your individual or organization GitHub account for sponsoring.
 
 **Important**: If you're sponsoring **[@pawamoy][github sponsor profile]**
 through a GitHub organization, please send a short email
-to dev@pawamoy.fr with the name of your
+to insiders@pawamoy.fr with the name of your
 organization and the GitHub account of the individual
 that should be added as a collaborator.[^4]
 
@@ -92,7 +106,7 @@ You can cancel your sponsorship anytime.[^5]
   [^4]:
     It's currently not possible to grant access to each member of an
     organization, as GitHub only allows for adding users. Thus, after
-    sponsoring, please send an email to dev@pawamoy.fr, stating which
+    sponsoring, please send an email to insiders@pawamoy.fr, stating which
     account should become a collaborator of the Insiders repository. We're
     working on a solution which will make access to organizations much simpler.
     To ensure that access is not tied to a particular individual GitHub account,
@@ -116,12 +130,10 @@ You can cancel your sponsorship anytime.[^5]
 
 <hr>
 <div class="premium-sponsors">
-
-
-
-<div id="bronze-sponsors"></div>
+  <div id="gold-sponsors"></div>
+  <div id="silver-sponsors"></div>
+  <div id="bronze-sponsors"></div>
 </div>
-
 <hr>
 
 <div id="sponsors"></div>
@@ -157,7 +169,7 @@ This section lists all funding goals that were previously completed, which means
 that those features were part of Insiders, but are now generally available and
 can be used by all users.
 
-```python exec="1" session="insiders"
+```python exec="1" session="insiders" idprefix=""
 for goal in goals.values():
     if goal.complete:
         goal.render()
@@ -177,8 +189,6 @@ feature flags. Most Insiders features enhance the overall experience,
 though while these features add value for the users of your project, they
 shouldn't be necessary for previewing when making changes to content.
 
-
-
 ### Payment
 
 > We don't want to pay for sponsorship every month. Are there any other options?
@@ -188,7 +198,7 @@ yearly billing cycle][billing cycle]. If for some reason you cannot do that, you
 could also create a dedicated GitHub account with a yearly billing cycle, which
 you only use for sponsoring (some sponsors already do that).
 
-If you have any problems or further questions, please reach out to dev@pawamoy.fr.
+If you have any problems or further questions, please reach out to insiders@pawamoy.fr.
 
 ### Terms
 

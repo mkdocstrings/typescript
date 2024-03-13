@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier
-_commit: 0.2.2
+_commit: 0.3.1
 _src_path: gh:mkdocstrings/handler-template
 author_email: dev@pawamoy.fr
 author_fullname: Timothée Mazzucotelli
@@ -9,6 +9,7 @@ copyright_holder: Timothée Mazzucotelli
 copyright_holder_email: dev@pawamoy.fr
 copyright_license: ISC License
 insiders: true
+insiders_email: insiders@pawamoy.fr
 insiders_repository_name: mkdocstrings-typescript
 language: TypeScript
 project_description: A Typescript handler for mkdocstrings.
