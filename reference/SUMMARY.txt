@@ -1,0 +1,4 @@
+* <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> mkdocstrings_handlers
+    * [<code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> typescript](mkdocstrings_handlers/typescript/index.md)
+        * [<code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> debug](mkdocstrings_handlers/typescript/debug.md)
+        * [<code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> handler](mkdocstrings_handlers/typescript/handler.md)
