@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from pathlib import Path
 
     from mkdocstrings.plugin import MkdocstringsPlugin
+
     from mkdocstrings_handlers.typescript.handler import TypescriptHandler
 
 

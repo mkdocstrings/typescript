@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import posixpath
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
@@ -39,11 +40,13 @@ class Feature:
     """Class representing an Insiders feature."""
 
     name: str
-    ref: str
+    ref: str | None
     since: date | None
     project: Project | None
 
-    def url(self, rel_base: str = "..") -> str:  # noqa: D102
+    def url(self, rel_base: str = "..") -> str | None:  # noqa: D102
+        if not self.ref:
+            return None
         if self.project:
             rel_base = self.project.url
         return posixpath.join(rel_base, self.ref.lstrip("/"))
@@ -56,7 +59,8 @@ class Feature:
                 ft_date = self.since.strftime("%B %d, %Y")  # type: ignore[union-attr]
                 new = f' :material-alert-decagram:{{ .new-feature .vibrate title="Added on {ft_date}" }}'
         project = f"[{self.project.name}]({self.project.url}) — " if self.project else ""
-        print(f"- [{'x' if self.since else ' '}] {project}[{self.name}]({self.url(rel_base)}){new}")
+        feature = f"[{self.name}]({self.url(rel_base)})" if self.ref else self.name
+        print(f"- [{'x' if self.since else ' '}] {project}{feature}{new}")
 
 
 @dataclass
@@ -99,7 +103,7 @@ def load_goals(data: str, funding: int = 0, project: Project | None = None) -> d
             features=[
                 Feature(
                     name=feature_data["name"],
-                    ref=feature_data["ref"],
+                    ref=feature_data.get("ref"),
                     since=feature_data.get("since")
                     and datetime.strptime(feature_data["since"], "%Y/%m/%d").date(),  # noqa: DTZ007
                     project=project,
@@ -112,8 +116,9 @@ def load_goals(data: str, funding: int = 0, project: Project | None = None) -> d
 
 
 def _load_goals_from_disk(path: str, funding: int = 0) -> dict[int, Goal]:
+    project_dir = os.getenv("MKDOCS_CONFIG_DIR", ".")
     try:
-        data = Path(path).read_text()
+        data = Path(project_dir, path).read_text()
     except OSError as error:
         raise RuntimeError(f"Could not load data from disk: {path}") from error
     return load_goals(data, funding)
@@ -156,7 +161,7 @@ def funding_goals(source: str | list[str | tuple[str, str, str]], funding: int =
                 goals[amount] = goal
             else:
                 goals[amount].features.extend(goal.features)
-    return goals
+    return {amount: goals[amount] for amount in sorted(goals)}
 
 
 def feature_list(goals: Iterable[Goal]) -> list[Feature]:
