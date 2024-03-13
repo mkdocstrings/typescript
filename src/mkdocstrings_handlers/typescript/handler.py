@@ -4,14 +4,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, ClassVar, Mapping, MutableMapping
 
-from markdown import Markdown
+from griffe_typedoc.dataclasses import ReflectionKind
+from griffe_typedoc.loader import load as load_typedoc
+from griffe_typedoc.logger import patch_loggers
 from mkdocstrings.handlers.base import BaseHandler, CollectionError, CollectorItem
 from mkdocstrings.loggers import get_logger
 
+if TYPE_CHECKING:
+    from markdown import Markdown
 
-from griffe_typedoc.loader import load as load_typedoc
-from griffe_typedoc.logger import patch_loggers
-from griffe_typedoc.dataclasses import ReflectionKind
 
 patch_loggers(get_logger)
 logger = get_logger(__name__)
@@ -90,12 +91,18 @@ class TypescriptHandler(BaseHandler):
     **`heading_level`** | `int` | The initial heading level to use. | `2`
     """
 
-    def __init__(self, *args, **kwargs) -> None:
-        config_file_path = kwargs.pop("config_file_path", None)
-        super().__init__(*args, **kwargs)
-        self._collected = {}
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """Initialize the handler.
 
-    def collect(self, identifier: str, config: MutableMapping[str, Any]) -> CollectorItem:  # noqa: ARG002
+        Parameters:
+            *args: Passed to the [base handler][mkdocstrings.handlers.base import BaseHandler].
+            **kwargs: Passed to the [base handler][mkdocstrings.handlers.base import BaseHandler].
+        """
+        kwargs.pop("config_file_path", None)
+        super().__init__(*args, **kwargs)
+        self._collected: dict[str, CollectorItem] = {}
+
+    def collect(self, identifier: str, config: MutableMapping[str, Any]) -> CollectorItem:
         """Collect data given an identifier and selection configuration.
 
         In the implementation, you typically call a subprocess that returns JSON, and load that JSON again into
@@ -126,8 +133,8 @@ class TypescriptHandler(BaseHandler):
                     return child
             return self._collected[identifier]
         raise CollectionError(f"Could not collect {identifier}")
-        
-    def render(self, data: CollectorItem, config: Mapping[str, Any]) -> str:  # noqa: ARG002
+
+    def render(self, data: CollectorItem, config: Mapping[str, Any]) -> str:
         """Render a template using provided data and configuration options.
 
         Parameters:
@@ -140,9 +147,12 @@ class TypescriptHandler(BaseHandler):
         """
         final_config = {**self.default_config, **config}
         heading_level = final_config["heading_level"]
-        template = self.env.get_template(f"module.html")
+        template = self.env.get_template("module.html")
         return template.render(
-            **{"config": final_config, "module": data, "heading_level": heading_level, "root": True},
+            config=final_config,
+            module=data,
+            heading_level=heading_level,
+            root=True,
         )
 
     def update_env(self, md: Markdown, config: dict) -> None:
@@ -162,7 +172,7 @@ class TypescriptHandler(BaseHandler):
 def get_handler(
     theme: str,
     custom_templates: str | None = None,
-    config_file_path: str | None = None,  # noqa: ARG001
+    config_file_path: str | None = None,
     **config: Any,  # noqa: ARG001
 ) -> TypescriptHandler:
     """Simply return an instance of `TypescriptHandler`.
