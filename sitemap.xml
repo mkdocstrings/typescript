@@ -2,67 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mkdocstrings.github.io/typescript/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/changelog/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/code_of_conduct/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/contributing/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/credits/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/license/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/insiders/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/insiders/changelog/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/insiders/installation/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://mkdocstrings.github.io/typescript/reference/SUMMARY/</loc>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/reference/mkdocstrings_handlers/typescript/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/reference/mkdocstrings_handlers/typescript/debug/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mkdocstrings.github.io/typescript/reference/mkdocstrings_handlers/typescript/handler/</loc>
-         <lastmod>2024-03-13</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://mkdocstrings.github.io/typescript/coverage/</loc>
-         <lastmod>2024-03-13</lastmod>
+         <lastmod>2024-03-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
