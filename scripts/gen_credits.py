@@ -141,12 +141,12 @@ def _render_credits() -> str:
 
         These projects were used to build *{{ project_name }}*. **Thank you!**
 
-        [`python`](https://www.python.org/) |
-        [`uv`](https://github.com/astral-sh/uv) |
-        [`copier-uv`](https://github.com/pawamoy/copier-uv)
+        [Python](https://www.python.org/) |
+        [uv](https://github.com/astral-sh/uv) |
+        [copier-uv](https://github.com/pawamoy/copier-uv)
 
         {% macro dep_line(dep) -%}
-        [`{{ dep.name }}`](https://pypi.org/project/{{ dep.name }}/) | {{ dep.summary }} | {{ ("`" ~ dep.spec|sort(reverse=True)|join(", ") ~ "`") if dep.spec else "" }} | `{{ dep.version }}` | {{ dep.license }}
+        [{{ dep.name }}](https://pypi.org/project/{{ dep.name }}/) | {{ dep.summary }} | {{ ("`" ~ dep.spec|sort(reverse=True)|join(", ") ~ "`") if dep.spec else "" }} | `{{ dep.version }}` | {{ dep.license }}
         {%- endmacro %}
 
         {% if prod_dependencies -%}
