@@ -4,7 +4,10 @@
 [![gitpod](https://img.shields.io/badge/gitpod-workspace-708FCC.svg?style=flat)](https://gitpod.io/#https://github.com/mkdocstrings/typescript)
 [![gitter](https://badges.gitter.im/join%20chat.svg)](https://app.gitter.im/#/room/#typescript:gitter.im)
 
-A Typescript handler for mkdocstrings. :warning: **Work in progress** :warning:
+A Typescript handler for mkdocstrings.
+
+WARNING: **Still in prototyping phase!**
+Feedback is welcome.
 
 ## Installation
 
