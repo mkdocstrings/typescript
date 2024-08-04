@@ -56,7 +56,10 @@ a handful of them, [thanks to our awesome sponsors][sponsors]!
 ## What's in it for me?
 
 ```python exec="1" session="insiders"
-data_source = "docs/insiders/goals.yml"
+data_source = [
+    "docs/insiders/goals.yml",
+    ("griffe-typedoc", "https://mkdocstrings.github.io/griffe-typedoc/", "insiders/goals.yml"),
+]
 ```
 
 <!-- blacken-docs:off -->
