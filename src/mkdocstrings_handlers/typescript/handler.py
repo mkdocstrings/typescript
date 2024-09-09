@@ -122,10 +122,9 @@ class TypescriptHandler(BaseHandler):
             raise CollectionError("Not loading modules during fallback")
         if identifier not in self._collected:
             data = load_typedoc(["typedoc"])
+            self._collected[data.name] = data
             if data.kind is ReflectionKind.PROJECT:
                 self._collected.update({module.name: module for module in data.children})
-            else:
-                self._collected[data.name] = data
             logger.debug(f"Collected {', '.join(self._collected.keys())}")
         if identifier in self._collected:
             for child in self._collected[identifier].children:
