@@ -1,94 +1,94 @@
 {{ log.debug("Dispatching " ~ obj.kind.value) }}
 {% if obj.kind.value == "project" %}
   {% with project = obj  %}
-    {% include "project.html" with context %}
+    {% include "project.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "module" and config.show_submodules %}
   {% with module = obj  %}
-    {% include "module.html" with context %}
+    {% include "module.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "namespace" %}
   {% with namespace = obj  %}
-    {% include "namespace.html" with context %}
+    {% include "namespace.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "enum" %}
   {% with enum = obj  %}
-    {% include "enum.html" with context %}
+    {% include "enum.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "enum_member" %}
   {% with enum_member = obj  %}
-    {% include "enum_member.html" with context %}
+    {% include "enum_member.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "variable" %}
   {% with variable = obj  %}
-    {% include "variable.html" with context %}
+    {% include "variable.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "function" %}
   {% with function = obj  %}
-    {% include "function.html" with context %}
+    {% include "function.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "class" %}
   {% with class = obj  %}
-    {% include "class.html" with context %}
+    {% include "class.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "interface" %}
   {% with interface = obj  %}
-    {% include "interface.html" with context %}
+    {% include "interface.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "constructor" %}
   {% with constructor = obj  %}
-    {% include "constructor.html" with context %}
+    {% include "constructor.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "property" %}
   {% with property = obj  %}
-    {% include "property.html" with context %}
+    {% include "property.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "method" %}
   {% with method = obj  %}
-    {% include "method.html" with context %}
+    {% include "method.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "call_signature" %}
   {% with call_signature = obj  %}
-    {% include "call_signature.html" with context %}
+    {% include "call_signature.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "index_signature" %}
   {% with index_signature = obj  %}
-    {% include "index_signature.html" with context %}
+    {% include "index_signature.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "constructor_signature" %}
   {% with constructor_signature = obj  %}
-    {% include "constructor_signature.html" with context %}
+    {% include "constructor_signature.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "parameter" %}
   {% with parameter = obj  %}
-    {% include "parameter.html" with context %}
+    {% include "parameter.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "type_literal" %}
   {% with type_literal = obj  %}
-    {% include "type_literal.html" with context %}
+    {% include "type_literal.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "type_parameter" %}
   {% with type_parameter = obj  %}
-    {% include "type_parameter.html" with context %}
+    {% include "type_parameter.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "accessor" %}
   {% with accessor = obj  %}
-    {% include "accessor.html" with context %}
+    {% include "accessor.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "get_signature" %}
   {% with get_signature = obj  %}
-    {% include "get_signature.html" with context %}
+    {% include "get_signature.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "set_signature" %}
   {% with set_signature = obj  %}
-    {% include "set_signature.html" with context %}
+    {% include "set_signature.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "type_alias" %}
   {% with type_alias = obj  %}
-    {% include "type_alias.html" with context %}
+    {% include "type_alias.html.jinja" with context %}
   {% endwith %}
 {% elif obj.kind.value == "reference" %}
   {% with reference = obj  %}
-    {% include "reference.html" with context %}
+    {% include "reference.html.jinja" with context %}
   {% endwith %}
 {% endif %}

@@ -1,0 +1,76 @@
+{{ log.debug("Rendering " + function.path) }}
+
+<div class="doc doc-object doc-function">
+  {% with obj = function, html_id = function.path %}
+
+    {% if root %}
+      {% set show_full_path = config.show_root_full_path %}
+      {% set root_members = True %}
+    {% elif root_members %}
+      {% set show_full_path = config.show_root_members_full_path or config.show_object_full_path %}
+      {% set root_members = False %}
+    {% else %}
+      {% set show_full_path = config.show_object_full_path %}
+    {% endif %}
+
+    {% set function_name = function.path if show_full_path else function.name %}
+    {% set symbol_type = "method" if function.parent.is_class else "function" %}
+
+    {% if not root or config.show_root_heading %}
+      {% filter heading(
+          heading_level,
+          role="function",
+          id=html_id,
+          class="doc doc-heading",
+          toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + function.name,
+      ) %}
+
+        {% block heading scoped %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-{{ symbol_type }}"></code>{% endif %}
+          {% if config.separate_signature %}
+            <span class="doc doc-object-name doc-function-name">{{ function_name }}</span>
+          {% else %}
+            {%+ filter highlight(language="typescript", inline=True) %}
+              {{ function_name }}
+            {% endfilter %}
+          {% endif %}
+        {% endblock heading %}
+
+      {% endfilter %}
+
+      {% block signature scoped %}
+        {% if config.separate_signature %}
+          {% for signature in function.signatures %}
+            {% filter highlight(language="typescript", inline=False) %}
+              {{ signature.source_contents(config.base_file_path) }}
+            {% endfilter %} 
+          {% endfor %}
+        {% endif %}
+      {% endblock signature %}
+
+    {% else %}
+
+      {% if config.show_root_toc_entry %}
+        {% filter heading(
+            heading_level,
+            role="function",
+            id=html_id,
+            toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + function.name,
+            hidden=True,
+        ) %}
+        {% endfilter %}
+      {% endif %}
+      {% set heading_level = heading_level - 1 %}
+    {% endif %}
+
+    <div class="doc doc-contents {% if root %}first{% endif %}">
+      {% block contents scoped %}
+        {% block docstring scoped %}
+          {% if function.comment %}
+            {{ function.comment.markdown|convert_markdown(heading_level, html_id) }}
+          {% endif %}
+        {% endblock docstring %}
+      {% endblock contents %}
+    </div>
+  {% endwith %}
+</div>

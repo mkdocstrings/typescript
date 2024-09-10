@@ -146,7 +146,7 @@ class TypescriptHandler(BaseHandler):
         """
         final_config = {**self.default_config, **config}
         heading_level = final_config["heading_level"]
-        template = self.env.get_template("module.html")
+        template = self.env.get_template("module.html.jinja")
         return template.render(
             config=final_config,
             module=data,

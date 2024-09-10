@@ -1,7 +1,7 @@
-{{ log.debug("Rendering " + variable.path) }}
+{{ log.debug("Rendering " + enum_member.path) }}
 
-<div class="doc doc-object doc-variable">
-  {% with obj = variable, html_id = variable.path %}
+<div class="doc doc-object doc-enum_member">
+  {% with obj = enum_member, html_id = enum_member.path %}
   
     {% if root %}
       {% set show_full_path = config.show_root_full_path %}
@@ -13,23 +13,23 @@
       {% set show_full_path = config.show_object_full_path %}
     {% endif %}
   
-    {% set variable_name = variable.path if show_full_path else variable.name %}
+    {% set enum_member_name = enum_member.path if show_full_path else enum_member.name %}
   
     {% if not root or config.show_root_heading %}
       {% filter heading(
           heading_level,
-          role="variable",
+          role="enum_member",
           id=html_id,
           class="doc doc-heading",
-          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-variable"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + variable.name,
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-enum_member"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + enum_member.name,
       ) %}
   
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-variable"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-enum_member"></code>{% endif %}
           {% if config.separate_signature %}
-            <span class="doc doc-object-name doc-variable-name">{{ variable_name }}</span>
+            <span class="doc doc-object-name doc-enum_member-name">{{ enum_member_name }}</span>
           {% else %}
-            <code>{{ variable_name }}</code>
+            <code>{{ enum_member_name }}</code>
           {% endif %}
         {% endblock heading %}
   
@@ -38,9 +38,9 @@
     {% else %}
       {% if config.show_root_toc_entry %}
         {% filter heading(heading_level,
-            role="variable",
+            role="enum_member",
             id=html_id,
-            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-variable"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + variable.name,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-enum_member"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + enum_member.name,
             hidden=True,
         ) %}
         {% endfilter %}
@@ -51,18 +51,13 @@
     <div class="doc doc-contents {% if root %}first{% endif %}">
       {% block contents scoped %}
         {% block docstring scoped %}
-          {% if variable.comment %}
-            {{ variable.comment.markdown|convert_markdown(heading_level, html_id) }}
+          {% if enum_member.comment %}
+            {{ enum_member.comment.markdown|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
-        {% block children scoped %}
-          {% set root = False %}
-          {% set heading_level = heading_level + 1 %}
-          {% include "children.html" with context %}
-        {% endblock children %}
       {% endblock contents %}
     </div>
   
   {% endwith %}
-  </div>
+</div>
   

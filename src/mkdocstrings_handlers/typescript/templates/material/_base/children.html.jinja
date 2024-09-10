@@ -4,7 +4,7 @@
       {{ log.debug("Rendering children of " + obj.path) }}
       <div class="doc doc-children">
         {% for obj in children %}
-          {% include "dispatch.html" with context %}
+          {% include "dispatch.html.jinja" with context %}
         {% endfor %}
       </div>
     {% endif %}
@@ -15,7 +15,7 @@
     {% for group in obj.resolved_groups %}
       <b>{{ group.title }}</b>
       {% for obj in group.children %}
-        {% include "dispatch.html" with context %}
+        {% include "dispatch.html.jinja" with context %}
       {% endfor %}
     {% endfor %}
   </div>
@@ -23,7 +23,7 @@
   {{ log.debug("Rendering children of " + obj.path) }}
   <div class="doc doc-children">
     {% for obj in obj.children %}
-      {% include "dispatch.html" with context %}
+      {% include "dispatch.html.jinja" with context %}
     {% endfor %}
   </div>
 {% endif %}

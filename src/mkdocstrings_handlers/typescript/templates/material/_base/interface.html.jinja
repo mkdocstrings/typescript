@@ -1,7 +1,7 @@
-{{ log.debug("Rendering " + method.path) }}
+{{ log.debug("Rendering " + interface.path) }}
 
-<div class="doc doc-object doc-method">
-  {% with obj = method, html_id = method.path %}
+<div class="doc doc-object doc-interface">
+  {% with obj = interface, html_id = interface.path %}
   
     {% if root %}
       {% set show_full_path = config.show_root_full_path %}
@@ -13,23 +13,23 @@
       {% set show_full_path = config.show_object_full_path %}
     {% endif %}
   
-    {% set method_name = method.path if show_full_path else method.name %}
+    {% set interface_name = interface.path if show_full_path else interface.name %}
   
     {% if not root or config.show_root_heading %}
       {% filter heading(
           heading_level,
-          role="method",
+          role="interface",
           id=html_id,
           class="doc doc-heading",
-          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + method.name,
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-interface"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + interface.name,
       ) %}
   
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-interface"></code>{% endif %}
           {% if config.separate_signature %}
-            <span class="doc doc-object-name doc-method-name">{{ method_name }}</span>
+            <span class="doc doc-object-name doc-interface-name">{{ interface_name }}</span>
           {% else %}
-            <code>{{ method_name }}</code>
+            <code>{{ interface_name }}</code>
           {% endif %}
         {% endblock heading %}
   
@@ -38,9 +38,9 @@
     {% else %}
       {% if config.show_root_toc_entry %}
         {% filter heading(heading_level,
-            role="method",
+            role="interface",
             id=html_id,
-            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + method.name,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-interface"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + interface.name,
             hidden=True,
         ) %}
         {% endfilter %}
@@ -51,18 +51,18 @@
     <div class="doc doc-contents {% if root %}first{% endif %}">
       {% block contents scoped %}
         {% block docstring scoped %}
-          {% if method.comment %}
-            {{ method.comment.markdown|convert_markdown(heading_level, html_id) }}
+          {% if interface.comment %}
+            {{ interface.comment.markdown|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
         {% block children scoped %}
           {% set root = False %}
           {% set heading_level = heading_level + 1 %}
-          {% include "children.html" with context %}
+          {% include "children.html.jinja" with context %}
         {% endblock children %}
       {% endblock contents %}
     </div>
   
   {% endwith %}
-  </div>
+</div>
   

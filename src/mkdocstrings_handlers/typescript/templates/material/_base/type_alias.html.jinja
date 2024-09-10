@@ -58,11 +58,11 @@
         {% block children scoped %}
           {% set root = False %}
           {% set heading_level = heading_level + 1 %}
-          {% include "children.html" with context %}
+          {% include "children.html.jinja" with context %}
         {% endblock children %}
       {% endblock contents %}
     </div>
   
   {% endwith %}
-  </div>
+</div>
   
