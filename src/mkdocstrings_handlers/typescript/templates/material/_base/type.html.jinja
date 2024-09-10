@@ -48,7 +48,7 @@
       {% block contents scoped %}
         {% block docstring scoped %}
           {% if type.comment %}
-            {{ type.comment.markdown|convert_markdown(heading_level, html_id) }}
+            {{ type.comment.markdown(symbol_map=type.symbol_map)|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
         {% block children scoped %}

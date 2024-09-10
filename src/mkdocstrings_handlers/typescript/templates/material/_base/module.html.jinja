@@ -52,7 +52,7 @@
       {% block contents scoped %}
         {% block docstring scoped %}
           {% if module.comment %}
-            {{ module.comment.markdown|convert_markdown(heading_level, html_id) }}
+            {{ module.comment.markdown(symbol_map=module.symbol_map)|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
         {% block children scoped %}

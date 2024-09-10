@@ -67,7 +67,7 @@
       {% block contents scoped %}
         {% block docstring scoped %}
           {% if function.comment %}
-            {{ function.comment.markdown|convert_markdown(heading_level, html_id) }}
+            {{ function.comment.markdown(symbol_map=function.symbol_map)|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
       {% endblock contents %}
