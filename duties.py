@@ -53,8 +53,8 @@ def changelog(ctx: Context, bump: str = "") -> None:
     ctx.run(tools.git_changelog(bump=bump or None), title="Updating changelog")
 
 
-@duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies", "check-api"])
-def check(ctx: Context) -> None:  # noqa: ARG001
+@duty(pre=["check-quality", "check-types", "check-docs", "check-api"])
+def check(ctx: Context) -> None:
     """Check it all!"""
 
 
@@ -122,12 +122,13 @@ def docs_deploy(ctx: Context) -> None:
     with material_insiders() as insiders:
         if not insiders:
             ctx.run(lambda: False, title="Not deploying docs without Material for MkDocs Insiders!")
-        origin = ctx.run("git config --get remote.origin.url", silent=True)
+        origin = ctx.run("git config --get remote.origin.url", silent=True, allow_overrides=False)
         if "pawamoy-insiders/mkdocstrings-typescript" in origin:
             ctx.run(
                 "git remote add upstream git@github.com:mkdocstrings/typescript",
                 silent=True,
                 nofail=True,
+                allow_overrides=False,
             )
             ctx.run(
                 tools.mkdocs.gh_deploy(remote_name="upstream", force=True),
