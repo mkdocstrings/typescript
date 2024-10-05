@@ -21,6 +21,9 @@ logger = get_logger(__name__)
 class TypescriptHandler(BaseHandler):
     """The Typescript handler class."""
 
+    name: str = "typescript"
+    """The handler's name."""
+
     domain: str = "typescript"
     """The cross-documentation domain/language for this handler."""
 
