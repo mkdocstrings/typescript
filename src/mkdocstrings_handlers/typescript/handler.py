@@ -123,19 +123,51 @@ class TypescriptHandler(BaseHandler):
         Returns:
             Anything you want, as long as you can feed it to the `render` method.
         """
+        # If we are in fallback mode, we don't want to collect anything.
         if config.get("fallback", False):
             raise CollectionError("Not loading modules during fallback")
-        if identifier not in self._collected:
+
+        # Split the identifier into package and path.
+        try:
+            package, path = identifier.split("::", 1)
+        except ValueError:
+            package, path = identifier, ""
+
+        # Load the data if not already collected.
+        if package not in self._collected:
             data = load_typedoc(["typedoc"])
             self._collected[data.name] = data
             if data.kind is ReflectionKind.PROJECT:
                 self._collected.update({module.name: module for module in data.children})
             logger.debug(f"Collected {', '.join(self._collected.keys())}")
-        if identifier in self._collected:
-            for child in self._collected[identifier].children:
+
+        # Find the object in the collected data.
+        if package in self._collected:
+            for child in self._collected[package].children:
                 if child.kind is ReflectionKind.MODULE and child.name == "index":
-                    return child
-            return self._collected[identifier]
+                    package_obj = child
+                    break
+            else:
+                package_obj = self._collected[package]
+
+            # If no path, return the package object.
+            if not path:
+                return package_obj
+
+            # Find the object in the package.
+            parts = path.split(".")
+            obj = package_obj
+            while parts:
+                part = parts.pop(0)
+                for child in obj.children:
+                    if child.name == part:
+                        obj = child
+                        break
+                else:
+                    raise CollectionError(f"Could not find {path} in {package}")
+            return obj
+
+        # If we couldn't find the object, raise an error.
         raise CollectionError(f"Could not collect {identifier}")
 
     def render(self, data: CollectorItem, config: Mapping[str, Any]) -> str:
@@ -151,10 +183,10 @@ class TypescriptHandler(BaseHandler):
         """
         final_config = {**self.default_config, **config}
         heading_level = final_config["heading_level"]
-        template = self.env.get_template("module.html.jinja")
+        template = self.env.get_template("dispatch.html.jinja")
         return template.render(
             config=final_config,
-            module=data,
+            obj=data,
             heading_level=heading_level,
             root=True,
         )
