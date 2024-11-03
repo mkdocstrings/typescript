@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, ClassVar, Mapping, MutableMapping
+from typing import TYPE_CHECKING, Any, ClassVar
 
 from griffe_typedoc.dataclasses import ReflectionKind
 from griffe_typedoc.loader import load as load_typedoc
@@ -11,6 +11,8 @@ from mkdocstrings.handlers.base import BaseHandler, CollectionError, CollectorIt
 from mkdocstrings.loggers import get_logger
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping, MutableMapping
+
     from markdown import Markdown
 
 

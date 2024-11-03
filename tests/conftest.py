@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import ChainMap
-from typing import TYPE_CHECKING, Any, Iterator
+from typing import TYPE_CHECKING, Any
 
 import pytest
 from markdown.core import Markdown
@@ -11,6 +11,7 @@ from mkdocs import config
 from mkdocs.config.defaults import get_schema
 
 if TYPE_CHECKING:
+    from collections.abc import Iterator
     from pathlib import Path
 
     from mkdocstrings.plugin import MkdocstringsPlugin
