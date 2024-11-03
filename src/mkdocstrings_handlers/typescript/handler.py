@@ -100,8 +100,8 @@ class TypescriptHandler(BaseHandler):
         """Initialize the handler.
 
         Parameters:
-            *args: Passed to the [base handler][mkdocstrings.handlers.base import BaseHandler].
-            **kwargs: Passed to the [base handler][mkdocstrings.handlers.base import BaseHandler].
+            *args: Passed to the [base handler][mkdocstrings.handlers.base.BaseHandler].
+            **kwargs: Passed to the [base handler][mkdocstrings.handlers.base.BaseHandler].
         """
         kwargs.pop("config_file_path", None)
         super().__init__(*args, **kwargs)
