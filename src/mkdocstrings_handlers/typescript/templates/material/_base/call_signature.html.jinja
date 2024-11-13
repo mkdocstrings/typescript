@@ -1,0 +1,14 @@
+{{ log.debug("Rendering " + call_signature.path) }}
+
+<div class="doc doc-object doc-call_signature">
+  {% with obj = call_signature, html_id = call_signature.path %}
+
+    {% filter highlight(language="typescript", inline=False) %}
+      {{ call_signature.source_contents }}
+    {% endfilter %} 
+
+    {% if call_signature.comment %}
+      {{ call_signature.comment.markdown(symbol_map=call_signature.symbol_map)|convert_markdown(heading_level, html_id) }}
+    {% endif %}
+  {% endwith %}
+</div>

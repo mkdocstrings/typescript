@@ -1,7 +1,7 @@
-{{ log.debug("Rendering " + function.path) }}
+{{ log.debug("Rendering " + constructor_signature.path) }}
 
-<div class="doc doc-object doc-function">
-  {% with obj = function, html_id = function.path %}
+<div class="doc doc-object doc-constructor_signature">
+  {% with obj = constructor_signature, html_id = constructor_signature.path %}
 
     {% if root %}
       {% set show_full_path = config.show_root_full_path %}
@@ -13,25 +13,25 @@
       {% set show_full_path = config.show_object_full_path %}
     {% endif %}
 
-    {% set function_name = function.path if show_full_path else function.name %}
-    {% set symbol_type = "method" if function.parent.is_class else "function" %}
+    {% set constructor_signature_name = constructor_signature.path if show_full_path else constructor_signature.name %}
+    {% set symbol_type = "method" if constructor_signature.parent.is_class else "constructor_signature" %}
 
     {% if not root or config.show_root_heading %}
       {% filter heading(
           heading_level,
-          role="function",
+          role="constructor_signature",
           id=html_id,
           class="doc doc-heading",
-          toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + function.name,
+          toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + constructor_signature.name,
       ) %}
 
         {% block heading scoped %}
           {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-{{ symbol_type }}"></code>{% endif %}
           {% if config.separate_signature %}
-            <span class="doc doc-object-name doc-function-name">{{ function_name }}</span>
+            <span class="doc doc-object-name doc-constructor_signature-name">{{ constructor_signature_name }}</span>
           {% else %}
             {%+ filter highlight(language="typescript", inline=True) %}
-              {{ function_name }}
+              {{ constructor_signature_name }}
             {% endfilter %}
           {% endif %}
         {% endblock heading %}
@@ -40,7 +40,7 @@
 
       {% block signature scoped %}
         {% if config.separate_signature %}
-          {% for signature in function.signatures %}
+          {% for signature in constructor_signature.signatures %}
             {% filter highlight(language="typescript", inline=False) %}
               {{ signature.source_contents }}
             {% endfilter %} 
@@ -53,9 +53,9 @@
       {% if config.show_root_toc_entry %}
         {% filter heading(
             heading_level,
-            role="function",
+            role="constructor_signature",
             id=html_id,
-            toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + function.name,
+            toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + constructor_signature.name,
             hidden=True,
         ) %}
         {% endfilter %}
@@ -66,8 +66,8 @@
     <div class="doc doc-contents {% if root %}first{% endif %}">
       {% block contents scoped %}
         {% block docstring scoped %}
-          {% if function.comment %}
-            {{ function.comment.markdown(symbol_map=function.symbol_map)|convert_markdown(heading_level, html_id) }}
+          {% if constructor_signature.comment %}
+            {{ constructor_signature.comment.markdown(symbol_map=constructor_signature.symbol_map)|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
       {% endblock contents %}

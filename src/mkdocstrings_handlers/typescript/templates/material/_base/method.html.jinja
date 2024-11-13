@@ -55,11 +55,11 @@
             {{ method.comment.markdown(symbol_map=method.symbol_map)|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
-        {% block children scoped %}
-          {% set root = False %}
-          {% set heading_level = heading_level + 1 %}
-          {% include "children.html.jinja" with context %}
-        {% endblock children %}
+        {% block signatures scoped %}
+          {% for obj in obj.signatures %}
+            {% include "dispatch.html.jinja" with context %}
+          {% endfor %}
+        {% endblock signatures %}
       {% endblock contents %}
     </div>
   

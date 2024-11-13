@@ -55,11 +55,20 @@
             {{ accessor.comment.markdown(symbol_map=accessor.symbol_map)|convert_markdown(heading_level, html_id) }}
           {% endif %}
         {% endblock docstring %}
-        {% block children scoped %}
-          {% set root = False %}
-          {% set heading_level = heading_level + 1 %}
-          {% include "children.html.jinja" with context %}
-        {% endblock children %}
+        {% block setsignature %}
+          {% if accessor.setsignature %}
+            {% with setsignature = access.setsignature %}
+              {% include "setsignature.html.jinja" with context %}
+            {% endwith %}
+          {% endif %}
+        {% endblock setsignature %}
+        {% block getsignature %}
+          {% if accessor.getsignature %}
+            {% with getsignature = access.getsignature %}
+              {% include "getsignature.html.jinja" with context %}
+            {% endwith %}
+          {% endif %}
+        {% endblock getsignature %}
       {% endblock contents %}
     </div>
   
