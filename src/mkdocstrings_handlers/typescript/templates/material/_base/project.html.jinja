@@ -1,0 +1,67 @@
+{{ log.debug("Rendering " + project.path) }}
+
+<div class="doc doc-object doc-project">
+  {% with obj = project, html_id = project.path %}
+
+    {% if root %}
+      {% set show_full_path = config.show_root_full_path %}
+      {% set root_members = True %}
+    {% elif root_members %}
+      {% set show_full_path = config.show_root_members_full_path or config.show_object_full_path %}
+      {% set root_members = False %}
+    {% else %}
+      {% set show_full_path = config.show_object_full_path %}
+    {% endif %}
+
+    {% set project_name = project.path if show_full_path else project.name %}
+
+    {% if not root or config.show_root_heading %}
+      {% filter heading(
+          heading_level,
+          role="project",
+          id=html_id,
+          class="doc doc-heading",
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-project"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + project.name,
+      ) %}
+
+        {% block heading scoped %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-project"></code>{% endif %}
+          {% if config.separate_signature %}
+            <span class="doc doc-object-name doc-project-name">{{ project_name }}</span>
+          {% else %}
+            <code>{{ project_name }}</code>
+          {% endif %}
+        {% endblock heading %}
+
+      {% endfilter %}
+
+    {% else %}
+      {% if config.show_root_toc_entry %}
+        {% filter heading(heading_level,
+            role="project",
+            id=html_id,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-project"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + project.name,
+            hidden=True,
+        ) %}
+        {% endfilter %}
+      {% endif %}
+      {% set heading_level = heading_level - 1 %}
+    {% endif %}
+
+    <div class="doc doc-contents {% if root %}first{% endif %}">
+      {% block contents scoped %}
+        {% block docstring scoped %}
+          {% if project.comment %}
+            {{ project.comment.markdown(symbol_map=project.symbol_map)|convert_markdown(heading_level, html_id) }}
+          {% endif %}
+        {% endblock docstring %}
+        {% block children scoped %}
+          {% set root = False %}
+          {% set heading_level = heading_level + 1 %}
+          {% include "children.html.jinja" with context %}
+        {% endblock children %}
+      {% endblock contents %}
+    </div>
+
+  {% endwith %}
+</div>
