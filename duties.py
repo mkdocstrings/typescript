@@ -85,6 +85,7 @@ def check_docs(ctx: Context) -> None:
 def check_types(ctx: Context) -> None:
     """Check that the code is correctly typed."""
     os.environ["MYPYPATH"] = "src"
+    os.environ["FORCE_COLOR"] = "1"
     ctx.run(
         tools.mypy(*PY_SRC_LIST, config_file="config/mypy.ini"),
         title=pyprefix("Type-checking"),
