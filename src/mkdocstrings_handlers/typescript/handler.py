@@ -23,16 +23,16 @@ logger = get_logger(__name__)
 class TypescriptHandler(BaseHandler):
     """The Typescript handler class."""
 
-    name: str = "typescript"
+    name: ClassVar[str] = "typescript"
     """The handler's name."""
 
-    domain: str = "typescript"
+    domain: ClassVar[str] = "typescript"
     """The cross-documentation domain/language for this handler."""
 
-    enable_inventory: bool = False
+    enable_inventory: ClassVar[bool] = False
     """Whether this handler is interested in enabling the creation of the `objects.inv` Sphinx inventory file."""
 
-    fallback_theme = "material"
+    fallback_theme: ClassVar[str] = "material"
     """The theme to fallback to."""
 
     fallback_config: ClassVar[dict] = {"fallback": True}
