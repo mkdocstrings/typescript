@@ -98,8 +98,8 @@ class TypescriptHandler(BaseHandler):
         """Initialize the handler.
 
         Parameters:
-            *args: Passed to the [base handler][mkdocstrings.handlers.base.BaseHandler].
-            **kwargs: Passed to the [base handler][mkdocstrings.handlers.base.BaseHandler].
+            *args: Passed to the [base handler][mkdocstrings.BaseHandler].
+            **kwargs: Passed to the [base handler][mkdocstrings.BaseHandler].
         """
         kwargs.pop("config_file_path", None)
         super().__init__(*args, **kwargs)
@@ -195,7 +195,7 @@ class TypescriptHandler(BaseHandler):
         Parameters:
             md: The Markdown instance. Useful to add functions able to convert Markdown into the environment filters.
             config: Configuration options for `mkdocs` and `mkdocstrings`, read from `mkdocs.yml`. See the source code
-                of [mkdocstrings.plugin.MkdocstringsPlugin.on_config][] to see what's in this dictionary.
+                of [mkdocstrings.MkdocstringsPlugin.on_config][] to see what's in this dictionary.
         """
         super().update_env(md, config)  # Add some mkdocstrings default filters such as highlight and convert_markdown
         self.env.trim_blocks = True
