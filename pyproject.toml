@@ -29,7 +29,7 @@ classifiers = [
 ]
 dependencies = [
     "mkdocstrings>=0.28.3",
-    "griffe-typedoc>=0.0",
+    "griffe-typedoc>=0.1",
 ]
 
 [project.urls]
