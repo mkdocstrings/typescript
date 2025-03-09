@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterator
     from pathlib import Path
 
-    from mkdocstrings.plugin import MkdocstringsPlugin
+    from mkdocstrings import MkdocstringsPlugin
 
     from mkdocstrings_handlers.typescript.handler import TypescriptHandler
 
@@ -94,5 +94,5 @@ def fixture_handler(plugin: MkdocstringsPlugin, ext_markdown: Markdown) -> Types
         A handler instance.
     """
     handler = plugin.handlers.get_handler("typescript")
-    handler._update_env(ext_markdown, plugin.handlers._config)
+    handler._update_env(ext_markdown, config=plugin.handlers._tool_config)
     return handler  # type: ignore[return-value]

@@ -7,8 +7,7 @@ from typing import TYPE_CHECKING, Any, ClassVar
 from griffe_typedoc.dataclasses import ReflectionKind
 from griffe_typedoc.loader import load as load_typedoc
 from griffe_typedoc.logger import patch_loggers
-from mkdocstrings.handlers.base import BaseHandler, CollectionError, CollectorItem
-from mkdocstrings.loggers import get_logger
+from mkdocstrings import BaseHandler, CollectionError, CollectorItem, get_logger
 
 if TYPE_CHECKING:
     from collections.abc import Mapping, MutableMapping
