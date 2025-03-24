@@ -14,7 +14,7 @@ insiders_repository_name: mkdocstrings-typescript
 language: TypeScript
 project_description: A Typescript handler for mkdocstrings.
 project_name: mkdocstrings-typescript
-public_release: false
+public_release: true
 python_package_distribution_name: mkdocstrings-typescript
 python_package_import_name: typescript
 repository_name: typescript

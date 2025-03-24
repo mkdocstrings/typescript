@@ -1,6 +1,8 @@
 # mkdocstrings-typescript
 
+[![ci](https://github.com/mkdocstrings/typescript/workflows/ci/badge.svg)](https://github.com/mkdocstrings/typescript/actions?query=workflow%3Aci)
 [![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://mkdocstrings.github.io/typescript/)
+[![pypi version](https://img.shields.io/pypi/v/mkdocstrings-typescript.svg)](https://pypi.org/project/mkdocstrings-typescript/)
 [![gitter](https://badges.gitter.im/join%20chat.svg)](https://app.gitter.im/#/room/#typescript:gitter.im)
 
 A Typescript handler for mkdocstrings.
@@ -10,7 +12,9 @@ Feedback is welcome.
 
 ## Installation
 
-This project is available to sponsors only, through my Insiders program. See Insiders [explanation](https://mkdocstrings.github.io/typescript/insiders/) and [installation instructions](https://mkdocstrings.github.io/typescript/insiders/installation/).
+```bash
+pip install mkdocstrings-typescript
+```
 
 ## Usage
 
