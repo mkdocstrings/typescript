@@ -1,0 +1,1022 @@
+# mkdocstrings-typescript
+
+A Typescript handler for mkdocstrings.
+
+Still in prototyping phase!
+
+Feedback is welcome.
+
+## Installation
+
+```
+pip install mkdocstrings-typescript
+
+```
+
+## Usage
+
+Add these [TypeDoc](https://typedoc.org/) configuration files to your repository:
+
+```
+📁 ./
+├── 📁 src/
+│   └── 📁 package1/
+├──  typedoc.base.json
+└──  typedoc.json
+
+```
+
+typedoc.base.json
+
+```
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "includeVersion": true
+}
+
+```
+
+typedoc.json
+
+```
+{
+  "extends": ["./typedoc.base.json"],
+  "entryPointStrategy": "packages",
+  "entryPoints": ["./src/*"]
+}
+
+```
+
+Update the entrypoints to match your file layout so that TypeDoc can find your packages. See [TypeDoc's configuration documentation](https://typedoc.org/options/configuration/).
+
+Then in each of your package, add this TypeDoc configuration file:
+
+```
+📁 ./
+├── 📁 src/
+│   └── 📁 package1/
+│       └──  typedoc.json
+├──  typedoc.base.json
+└──  typedoc.json
+
+```
+
+typedoc.json
+
+```
+{
+  "extends": ["../../typedoc.base.json"],
+  "entryPointStrategy": "expand",
+  "entryPoints": ["src/index.d.ts"]
+}
+
+```
+
+Again, update entrypoints to match your file and package layout. See [TypeDoc's configuration documentation](https://typedoc.org/options/configuration/).
+
+**Your packages must be built for TypeDoc to work.**
+
+You are now able to use the TypeScript handler to inject API docs in your Markdown pages by referencing package names:
+
+```
+::: @owner/packageName
+    handler: typescript
+
+```
+
+You can set the Typescript handler as default handler:
+
+```
+plugins:
+- mkdocstrings:
+    default_handler: typescript
+
+```
+
+By setting it as default handler you can omit it when injecting documentation:
+
+```
+::: @owner/packageName
+
+```
+
+# typescript
+
+Typescript handler for mkdocstrings.
+
+Classes:
+
+- **`TypescriptConfig`** – Typescript handler configuration.
+- **`TypescriptHandler`** – The Typescript handler class.
+- **`TypescriptInputConfig`** – Typescript handler configuration.
+- **`TypescriptInputOptions`** – Accepted input options.
+- **`TypescriptOptions`** – Final options passed as template context.
+
+Functions:
+
+- **`get_handler`** – Simply return an instance of TypescriptHandler.
+
+## TypescriptConfig
+
+```
+TypescriptConfig(options: dict[str, Any] = dict())
+
+```
+
+Bases: `TypescriptInputConfig`
+
+Typescript handler configuration.
+
+Methods:
+
+- **`coerce`** – Coerce data.
+- **`from_data`** – Create an instance from a dictionary.
+
+Attributes:
+
+- **`options`** (`dict[str, Any]`) – Global options in mkdocs.yml.
+
+### options
+
+```
+options: dict[str, Any] = field(default_factory=dict)
+
+```
+
+Global options in mkdocs.yml.
+
+### coerce
+
+```
+coerce(**data: Any) -> MutableMapping[str, Any]
+
+```
+
+Coerce data.
+
+### from_data
+
+```
+from_data(**data: Any) -> Self
+
+```
+
+Create an instance from a dictionary.
+
+## TypescriptHandler
+
+```
+TypescriptHandler(
+    config: TypescriptConfig, base_dir: Path, **kwargs: Any
+)
+
+```
+
+Bases: `BaseHandler`
+
+The Typescript handler class.
+
+Parameters:
+
+- **`config`** (`TypescriptConfig`) – The handler configuration.
+- **`base_dir`** (`Path`) – The base directory of the project.
+- **`**kwargs`** (`Any`, default: `{}` ) – Arguments passed to the parent constructor.
+
+Methods:
+
+- **`collect`** – Collect data given an identifier and selection configuration.
+- **`do_convert_markdown`** – Render Markdown text; for use inside templates.
+- **`do_heading`** – Render an HTML heading and register it for the table of contents. For use inside templates.
+- **`get_aliases`** – Get aliases for a given identifier.
+- **`get_extended_templates_dirs`** – Load template extensions for the given handler, return their templates directories.
+- **`get_headings`** – Return and clear the headings gathered so far.
+- **`get_inventory_urls`** – Return the URLs (and configuration options) of the inventory files to download.
+- **`get_options`** – Get combined default, global and local options.
+- **`get_templates_dir`** – Return the path to the handler's templates directory.
+- **`load_inventory`** – Yield items and their URLs from an inventory file streamed from in_file.
+- **`render`** – Render a template using provided data and configuration options.
+- **`render_backlinks`** – Render backlinks.
+- **`teardown`** – Teardown the handler.
+- **`update_env`** – Update the Jinja environment with any custom settings/filters/options for this handler.
+
+Attributes:
+
+- **`base_dir`** – The base directory of the project.
+- **`config`** – The handler configuration.
+- **`custom_templates`** – The path to custom templates.
+- **`domain`** (`str`) – The cross-documentation domain/language for this handler.
+- **`enable_inventory`** (`bool`) – Whether this handler is interested in enabling the creation of the objects.inv Sphinx inventory file.
+- **`env`** – The Jinja environment.
+- **`extra_css`** (`str`) – Extra CSS.
+- **`fallback_config`** (`dict`) – Fallback configuration when searching anchors for identifiers.
+- **`fallback_theme`** (`str`) – The theme to fallback to.
+- **`global_options`** – The global configuration options.
+- **`md`** (`Markdown`) – The Markdown instance.
+- **`mdx`** – The Markdown extensions to use.
+- **`mdx_config`** – The configuration for the Markdown extensions.
+- **`name`** (`str`) – The handler's name.
+- **`outer_layer`** (`bool`) – Whether we're in the outer Markdown conversion layer.
+- **`theme`** – The selected theme.
+
+### base_dir
+
+```
+base_dir = base_dir
+
+```
+
+The base directory of the project.
+
+### config
+
+```
+config = config
+
+```
+
+The handler configuration.
+
+### custom_templates
+
+```
+custom_templates = custom_templates
+
+```
+
+The path to custom templates.
+
+### domain
+
+```
+domain: str = 'ts'
+
+```
+
+The cross-documentation domain/language for this handler.
+
+### enable_inventory
+
+```
+enable_inventory: bool = False
+
+```
+
+Whether this handler is interested in enabling the creation of the `objects.inv` Sphinx inventory file.
+
+### env
+
+```
+env = Environment(
+    autoescape=True,
+    loader=FileSystemLoader(paths),
+    auto_reload=False,
+)
+
+```
+
+The Jinja environment.
+
+### extra_css
+
+```
+extra_css: str = ''
+
+```
+
+Extra CSS.
+
+### fallback_config
+
+```
+fallback_config: dict = {}
+
+```
+
+Fallback configuration when searching anchors for identifiers.
+
+### fallback_theme
+
+```
+fallback_theme: str = 'material'
+
+```
+
+The theme to fallback to.
+
+### global_options
+
+```
+global_options = options
+
+```
+
+The global configuration options.
+
+### md
+
+```
+md: Markdown
+
+```
+
+The Markdown instance.
+
+Raises:
+
+- `RuntimeError` – When the Markdown instance is not set yet.
+
+### mdx
+
+```
+mdx = mdx
+
+```
+
+The Markdown extensions to use.
+
+### mdx_config
+
+```
+mdx_config = mdx_config
+
+```
+
+The configuration for the Markdown extensions.
+
+### name
+
+```
+name: str = 'typescript'
+
+```
+
+The handler's name.
+
+### outer_layer
+
+```
+outer_layer: bool
+
+```
+
+Whether we're in the outer Markdown conversion layer.
+
+### theme
+
+```
+theme = theme
+
+```
+
+The selected theme.
+
+### collect
+
+```
+collect(
+    identifier: str, options: TypescriptOptions
+) -> CollectorItem
+
+```
+
+Collect data given an identifier and selection configuration.
+
+### do_convert_markdown
+
+```
+do_convert_markdown(
+    text: str,
+    heading_level: int,
+    html_id: str = "",
+    *,
+    strip_paragraph: bool = False,
+    autoref_hook: AutorefsHookInterface | None = None,
+) -> Markup
+
+```
+
+Render Markdown text; for use inside templates.
+
+Parameters:
+
+- **`text`** (`str`) – The text to convert.
+- **`heading_level`** (`int`) – The base heading level to start all Markdown headings from.
+- **`html_id`** (`str`, default: `''` ) – The HTML id of the element that's considered the parent of this element.
+- **`strip_paragraph`** (`bool`, default: `False` ) – Whether to exclude the <p> tag from around the whole output.
+
+Returns:
+
+- `Markup` – An HTML string.
+
+### do_heading
+
+```
+do_heading(
+    content: Markup,
+    heading_level: int,
+    *,
+    role: str | None = None,
+    hidden: bool = False,
+    toc_label: str | None = None,
+    **attributes: str,
+) -> Markup
+
+```
+
+Render an HTML heading and register it for the table of contents. For use inside templates.
+
+Parameters:
+
+- **`content`** (`Markup`) – The HTML within the heading.
+- **`heading_level`** (`int`) – The level of heading (e.g. 3 -> h3).
+- **`role`** (`str | None`, default: `None` ) – An optional role for the object bound to this heading.
+- **`hidden`** (`bool`, default: `False` ) – If True, only register it for the table of contents, don't render anything.
+- **`toc_label`** (`str | None`, default: `None` ) – The title to use in the table of contents ('data-toc-label' attribute).
+- **`**attributes`** (`str`, default: `{}` ) – Any extra HTML attributes of the heading.
+
+Returns:
+
+- `Markup` – An HTML string.
+
+### get_aliases
+
+```
+get_aliases(identifier: str) -> tuple[str, ...]
+
+```
+
+Get aliases for a given identifier.
+
+### get_extended_templates_dirs
+
+```
+get_extended_templates_dirs(handler: str) -> list[Path]
+
+```
+
+Load template extensions for the given handler, return their templates directories.
+
+Parameters:
+
+- **`handler`** (`str`) – The name of the handler to get the extended templates directory of.
+
+Returns:
+
+- `list[Path]` – The extensions templates directories.
+
+### get_headings
+
+```
+get_headings() -> Sequence[Element]
+
+```
+
+Return and clear the headings gathered so far.
+
+Returns:
+
+- `Sequence[Element]` – A list of HTML elements.
+
+### get_inventory_urls
+
+```
+get_inventory_urls() -> list[tuple[str, dict[str, Any]]]
+
+```
+
+Return the URLs (and configuration options) of the inventory files to download.
+
+### get_options
+
+```
+get_options(
+    local_options: Mapping[str, Any],
+) -> HandlerOptions
+
+```
+
+Get combined default, global and local options.
+
+Parameters:
+
+- **`local_options`** (`Mapping[str, Any]`) – The local options.
+
+Returns:
+
+- `HandlerOptions` – The combined options.
+
+### get_templates_dir
+
+```
+get_templates_dir(handler: str | None = None) -> Path
+
+```
+
+Return the path to the handler's templates directory.
+
+Override to customize how the templates directory is found.
+
+Parameters:
+
+- **`handler`** (`str | None`, default: `None` ) – The name of the handler to get the templates directory of.
+
+Raises:
+
+- `ModuleNotFoundError` – When no such handler is installed.
+- `FileNotFoundError` – When the templates directory cannot be found.
+
+Returns:
+
+- `Path` – The templates directory path.
+
+### load_inventory
+
+```
+load_inventory(
+    in_file: BinaryIO,
+    url: str,
+    base_url: str | None = None,
+    **kwargs: Any,
+) -> Iterator[tuple[str, str]]
+
+```
+
+Yield items and their URLs from an inventory file streamed from `in_file`.
+
+Parameters:
+
+- **`in_file`** (`BinaryIO`) – The binary file-like object to read the inventory from.
+- **`url`** (`str`) – The URL that this file is being streamed from (used to guess base_url).
+- **`base_url`** (`str | None`, default: `None` ) – The URL that this inventory's sub-paths are relative to.
+- **`**kwargs`** (`Any`, default: `{}` ) – Ignore additional arguments passed from the config.
+
+Yields:
+
+- `tuple[str, str]` – Tuples of (item identifier, item URL).
+
+### render
+
+```
+render(
+    data: CollectorItem, options: TypescriptOptions
+) -> str
+
+```
+
+Render a template using provided data and configuration options.
+
+### render_backlinks
+
+```
+render_backlinks(
+    backlinks: Mapping[str, Iterable[Backlink]],
+) -> str
+
+```
+
+Render backlinks.
+
+### teardown
+
+```
+teardown() -> None
+
+```
+
+Teardown the handler.
+
+This method should be implemented to, for example, terminate a subprocess that was started when creating the handler instance.
+
+### update_env
+
+```
+update_env(config: dict) -> None
+
+```
+
+Update the Jinja environment with any custom settings/filters/options for this handler.
+
+Parameters:
+
+- **`config`** (`dict`) – MkDocs configuration, read from mkdocs.yml.
+
+## TypescriptInputConfig
+
+```
+TypescriptInputConfig(
+    options: Annotated[
+        TypescriptInputOptions,
+        _Field(
+            description="Configuration options for collecting and rendering objects."
+        ),
+    ] = TypescriptInputOptions(),
+)
+
+```
+
+Typescript handler configuration.
+
+Methods:
+
+- **`coerce`** – Coerce data.
+- **`from_data`** – Create an instance from a dictionary.
+
+Attributes:
+
+- **`options`** (`Annotated[TypescriptInputOptions, _Field(description='Configuration options for collecting and rendering objects.')]`) – Configuration options for collecting and rendering objects.
+
+### options
+
+```
+options: Annotated[
+    TypescriptInputOptions,
+    _Field(
+        description="Configuration options for collecting and rendering objects."
+    ),
+] = field(default_factory=TypescriptInputOptions)
+
+```
+
+Configuration options for collecting and rendering objects.
+
+### coerce
+
+```
+coerce(**data: Any) -> MutableMapping[str, Any]
+
+```
+
+Coerce data.
+
+### from_data
+
+```
+from_data(**data: Any) -> Self
+
+```
+
+Create an instance from a dictionary.
+
+## TypescriptInputOptions
+
+```
+TypescriptInputOptions(
+    extra: Annotated[
+        dict[str, Any],
+        _Field(
+            group="general", description="Extra options."
+        ),
+    ] = dict(),
+    heading: Annotated[
+        str,
+        _Field(
+            group="headings",
+            description="A custom string to override the autogenerated heading of the root object.",
+        ),
+    ] = "",
+    heading_level: Annotated[
+        int,
+        _Field(
+            group="headings",
+            description="The initial heading level to use.",
+        ),
+    ] = 2,
+    show_symbol_type_heading: Annotated[
+        bool,
+        _Field(
+            group="headings",
+            description="Show the symbol type in headings (e.g. mod, class, meth, func and attr).",
+        ),
+    ] = False,
+    show_symbol_type_toc: Annotated[
+        bool,
+        _Field(
+            group="headings",
+            description="Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).",
+        ),
+    ] = False,
+    toc_label: Annotated[
+        str,
+        _Field(
+            group="headings",
+            description="A custom string to override the autogenerated toc label of the root object.",
+        ),
+    ] = "",
+)
+
+```
+
+Accepted input options.
+
+Methods:
+
+- **`coerce`** – Coerce data.
+- **`from_data`** – Create an instance from a dictionary.
+
+Attributes:
+
+- **`extra`** (`Annotated[dict[str, Any], _Field(group='general', description='Extra options.')]`) – Extra options.
+- **`heading`** (`Annotated[str, _Field(group='headings', description='A custom string to override the autogenerated heading of the root object.')]`) – A custom string to override the autogenerated heading of the root object.
+- **`heading_level`** (`Annotated[int, _Field(group='headings', description='The initial heading level to use.')]`) – The initial heading level to use.
+- **`show_symbol_type_heading`** (`Annotated[bool, _Field(group='headings', description='Show the symbol type in headings (e.g. mod, class, meth, func and attr).')]`) – Show the symbol type in headings (e.g. mod, class, meth, func and attr).
+- **`show_symbol_type_toc`** (`Annotated[bool, _Field(group='headings', description='Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).')]`) – Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).
+- **`toc_label`** (`Annotated[str, _Field(group='headings', description='A custom string to override the autogenerated toc label of the root object.')]`) – A custom string to override the autogenerated toc label of the root object.
+
+### extra
+
+```
+extra: Annotated[
+    dict[str, Any],
+    _Field(group="general", description="Extra options."),
+] = field(default_factory=dict)
+
+```
+
+Extra options.
+
+### heading
+
+```
+heading: Annotated[
+    str,
+    _Field(
+        group="headings",
+        description="A custom string to override the autogenerated heading of the root object.",
+    ),
+] = ""
+
+```
+
+A custom string to override the autogenerated heading of the root object.
+
+### heading_level
+
+```
+heading_level: Annotated[
+    int,
+    _Field(
+        group="headings",
+        description="The initial heading level to use.",
+    ),
+] = 2
+
+```
+
+The initial heading level to use.
+
+### show_symbol_type_heading
+
+```
+show_symbol_type_heading: Annotated[
+    bool,
+    _Field(
+        group="headings",
+        description="Show the symbol type in headings (e.g. mod, class, meth, func and attr).",
+    ),
+] = False
+
+```
+
+Show the symbol type in headings (e.g. mod, class, meth, func and attr).
+
+### show_symbol_type_toc
+
+```
+show_symbol_type_toc: Annotated[
+    bool,
+    _Field(
+        group="headings",
+        description="Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).",
+    ),
+] = False
+
+```
+
+Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).
+
+### toc_label
+
+```
+toc_label: Annotated[
+    str,
+    _Field(
+        group="headings",
+        description="A custom string to override the autogenerated toc label of the root object.",
+    ),
+] = ""
+
+```
+
+A custom string to override the autogenerated toc label of the root object.
+
+### coerce
+
+```
+coerce(**data: Any) -> MutableMapping[str, Any]
+
+```
+
+Coerce data.
+
+### from_data
+
+```
+from_data(**data: Any) -> Self
+
+```
+
+Create an instance from a dictionary.
+
+## TypescriptOptions
+
+```
+TypescriptOptions(
+    extra: Annotated[
+        dict[str, Any],
+        _Field(
+            group="general", description="Extra options."
+        ),
+    ] = dict(),
+    heading: Annotated[
+        str,
+        _Field(
+            group="headings",
+            description="A custom string to override the autogenerated heading of the root object.",
+        ),
+    ] = "",
+    heading_level: Annotated[
+        int,
+        _Field(
+            group="headings",
+            description="The initial heading level to use.",
+        ),
+    ] = 2,
+    show_symbol_type_heading: Annotated[
+        bool,
+        _Field(
+            group="headings",
+            description="Show the symbol type in headings (e.g. mod, class, meth, func and attr).",
+        ),
+    ] = False,
+    show_symbol_type_toc: Annotated[
+        bool,
+        _Field(
+            group="headings",
+            description="Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).",
+        ),
+    ] = False,
+    toc_label: Annotated[
+        str,
+        _Field(
+            group="headings",
+            description="A custom string to override the autogenerated toc label of the root object.",
+        ),
+    ] = "",
+)
+
+```
+
+Bases: `TypescriptInputOptions`
+
+Final options passed as template context.
+
+Methods:
+
+- **`coerce`** – Create an instance from a dictionary.
+- **`from_data`** – Create an instance from a dictionary.
+
+Attributes:
+
+- **`extra`** (`Annotated[dict[str, Any], _Field(group='general', description='Extra options.')]`) – Extra options.
+- **`heading`** (`Annotated[str, _Field(group='headings', description='A custom string to override the autogenerated heading of the root object.')]`) – A custom string to override the autogenerated heading of the root object.
+- **`heading_level`** (`Annotated[int, _Field(group='headings', description='The initial heading level to use.')]`) – The initial heading level to use.
+- **`show_symbol_type_heading`** (`Annotated[bool, _Field(group='headings', description='Show the symbol type in headings (e.g. mod, class, meth, func and attr).')]`) – Show the symbol type in headings (e.g. mod, class, meth, func and attr).
+- **`show_symbol_type_toc`** (`Annotated[bool, _Field(group='headings', description='Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).')]`) – Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).
+- **`toc_label`** (`Annotated[str, _Field(group='headings', description='A custom string to override the autogenerated toc label of the root object.')]`) – A custom string to override the autogenerated toc label of the root object.
+
+### extra
+
+```
+extra: Annotated[
+    dict[str, Any],
+    _Field(group="general", description="Extra options."),
+] = field(default_factory=dict)
+
+```
+
+Extra options.
+
+### heading
+
+```
+heading: Annotated[
+    str,
+    _Field(
+        group="headings",
+        description="A custom string to override the autogenerated heading of the root object.",
+    ),
+] = ""
+
+```
+
+A custom string to override the autogenerated heading of the root object.
+
+### heading_level
+
+```
+heading_level: Annotated[
+    int,
+    _Field(
+        group="headings",
+        description="The initial heading level to use.",
+    ),
+] = 2
+
+```
+
+The initial heading level to use.
+
+### show_symbol_type_heading
+
+```
+show_symbol_type_heading: Annotated[
+    bool,
+    _Field(
+        group="headings",
+        description="Show the symbol type in headings (e.g. mod, class, meth, func and attr).",
+    ),
+] = False
+
+```
+
+Show the symbol type in headings (e.g. mod, class, meth, func and attr).
+
+### show_symbol_type_toc
+
+```
+show_symbol_type_toc: Annotated[
+    bool,
+    _Field(
+        group="headings",
+        description="Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).",
+    ),
+] = False
+
+```
+
+Show the symbol type in the Table of Contents (e.g. mod, class, methd, func and attr).
+
+### toc_label
+
+```
+toc_label: Annotated[
+    str,
+    _Field(
+        group="headings",
+        description="A custom string to override the autogenerated toc label of the root object.",
+    ),
+] = ""
+
+```
+
+A custom string to override the autogenerated toc label of the root object.
+
+### coerce
+
+```
+coerce(**data: Any) -> MutableMapping[str, Any]
+
+```
+
+Create an instance from a dictionary.
+
+### from_data
+
+```
+from_data(**data: Any) -> Self
+
+```
+
+Create an instance from a dictionary.
+
+## get_handler
+
+```
+get_handler(
+    handler_config: MutableMapping[str, Any],
+    tool_config: MkDocsConfig,
+    **kwargs: Any,
+) -> TypescriptHandler
+
+```
+
+Simply return an instance of `TypescriptHandler`.
+
+Parameters:
+
+- **`handler_config`** (`MutableMapping[str, Any]`) – The handler configuration.
+- **`tool_config`** (`MkDocsConfig`) – The tool (SSG) configuration.
+
+Returns:
+
+- `TypescriptHandler` – An instance of TypescriptHandler.

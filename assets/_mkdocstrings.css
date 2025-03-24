@@ -40,39 +40,75 @@
 /* Symbols in Navigation and ToC. */
 :root,
 [data-md-color-scheme="default"] {
-  --doc-symbol-parameter-fg-color: #df50af;
-  --doc-symbol-variable-fg-color: #953800;
-  --doc-symbol-function-fg-color: #8250df;
-  --doc-symbol-method-fg-color: #8250df;
-  --doc-symbol-property-fg-color: #953800;
-  --doc-symbol-interface-fg-color: #0550ae;
-  --doc-symbol-module-fg-color: #5cad0f;
+  --doc-symbol-ts-accessor-fg-color: #6f42c1;
+  --doc-symbol-ts-attribute-fg-color: #6f42c1;
+  --doc-symbol-ts-class-fg-color: #22863a;
+  --doc-symbol-ts-constructor-fg-color: #1f66ff;
+  --doc-symbol-ts-enum-fg-color: #6f42c1;
+  --doc-symbol-ts-enum_member-fg-color: #f0ad4e;
+  --doc-symbol-ts-interface-fg-color: #6f42c1;
+  --doc-symbol-ts-method-fg-color: #0366d6;
+  --doc-symbol-ts-module-fg-color: #0366d6;
+  --doc-symbol-ts-namespace-fg-color: #0366d6;
+  --doc-symbol-ts-parameter-fg-color: #e36209;
+  --doc-symbol-ts-project-fg-color: #24292f;
+  --doc-symbol-ts-property-fg-color: #6f42c1;
+  --doc-symbol-ts-type-fg-color: #6f42c1;
+  --doc-symbol-ts-type_alias-fg-color: #6f42c1;
+  --doc-symbol-ts-variable-fg-color: #e36209;
 
-  --doc-symbol-parameter-bg-color: #df50af1a;
-  --doc-symbol-variable-bg-color: #9538001a;
-  --doc-symbol-function-bg-color: #8250df1a;
-  --doc-symbol-method-bg-color: #8250df1a;
-  --doc-symbol-property-bg-color: #9538001a;
-  --doc-symbol-interface-bg-color: #0550ae1a;
-  --doc-symbol-module-bg-color: #5cad0f1a;
+  --doc-symbol-ts-accessor-bg-color: #6f42c11a;
+  --doc-symbol-ts-attribute-bg-color: #6f42c11a;
+  --doc-symbol-ts-class-bg-color: #22863a1a;
+  --doc-symbol-ts-constructor-bg-color: #1f66ff1a;
+  --doc-symbol-ts-enum-bg-color: #6f42c11a;
+  --doc-symbol-ts-enum_member-bg-color: #f0ad4e1a;
+  --doc-symbol-ts-interface-bg-color: #6f42c11a;
+  --doc-symbol-ts-method-bg-color: #0366d61a;
+  --doc-symbol-ts-module-bg-color: #0366d61a;
+  --doc-symbol-ts-namespace-bg-color: #0366d61a;
+  --doc-symbol-ts-parameter-bg-color: #e362091a;
+  --doc-symbol-ts-project-bg-color: #24292f1a;
+  --doc-symbol-ts-property-bg-color: #6f42c11a;
+  --doc-symbol-ts-type-bg-color: #6f42c11a;
+  --doc-symbol-ts-type_alias-bg-color: #6f42c11a;
+  --doc-symbol-ts-variable-bg-color: #e362091a;
 }
 
 [data-md-color-scheme="slate"] {
-  --doc-symbol-parameter-fg-color: #ffa8cc;
-  --doc-symbol-variable-fg-color: #ffa657;
-  --doc-symbol-function-fg-color: #d2a8ff;
-  --doc-symbol-method-fg-color: #d2a8ff;
-  --doc-symbol-property-fg-color: #ffa657;
-  --doc-symbol-interface-fg-color: #79c0ff;
-  --doc-symbol-module-fg-color: #baff79;
+  --doc-symbol-ts-accessor-fg-color: #d4a5f0;
+  --doc-symbol-ts-attribute-fg-color: #d4a5f0;
+  --doc-symbol-ts-class-fg-color: #78e7d1;
+  --doc-symbol-ts-constructor-fg-color: #6ba3ff;
+  --doc-symbol-ts-enum-fg-color: #d4a5f0;
+  --doc-symbol-ts-enum_member-fg-color: #ffb864;
+  --doc-symbol-ts-interface-fg-color: #d4a5f0;
+  --doc-symbol-ts-method-fg-color: #58a6ff;
+  --doc-symbol-ts-module-fg-color: #58a6ff;
+  --doc-symbol-ts-namespace-fg-color: #58a6ff;
+  --doc-symbol-ts-parameter-fg-color: #f4a261;
+  --doc-symbol-ts-project-fg-color: #e1e4e8;
+  --doc-symbol-ts-property-fg-color: #d4a5f0;
+  --doc-symbol-ts-type-fg-color: #d4a5f0;
+  --doc-symbol-ts-type_alias-fg-color: #d4a5f0;
+  --doc-symbol-ts-variable-fg-color: #f4a261;
 
-  --doc-symbol-parameter-bg-color: #ffa8cc1a;
-  --doc-symbol-variable-bg-color: #ffa6571a;
-  --doc-symbol-function-bg-color: #d2a8ff1a;
-  --doc-symbol-method-bg-color: #d2a8ff1a;
-  --doc-symbol-property-bg-color: #ffa6571a;
-  --doc-symbol-interface-bg-color: #79c0ff1a;
-  --doc-symbol-module-bg-color: #baff791a;
+  --doc-symbol-ts-accessor-bg-color: #d4a5f01a;
+  --doc-symbol-ts-attribute-bg-color: #d4a5f01a;
+  --doc-symbol-ts-class-bg-color: #78e7d11a;
+  --doc-symbol-ts-constructor-bg-color: #6ba3ff1a;
+  --doc-symbol-ts-enum-bg-color: #d4a5f01a;
+  --doc-symbol-ts-enum_member-bg-color: #ffb8641a;
+  --doc-symbol-ts-interface-bg-color: #d4a5f01a;
+  --doc-symbol-ts-method-bg-color: #58a6ff1a;
+  --doc-symbol-ts-module-bg-color: #58a6ff1a;
+  --doc-symbol-ts-namespace-bg-color: #58a6ff1a;
+  --doc-symbol-ts-parameter-bg-color: #f4a2611a;
+  --doc-symbol-ts-project-bg-color: #e1e4e81a;
+  --doc-symbol-ts-property-bg-color: #d4a5f01a;
+  --doc-symbol-ts-type-bg-color: #d4a5f01a;
+  --doc-symbol-ts-type_alias-bg-color: #d4a5f01a;
+  --doc-symbol-ts-variable-bg-color: #f4a2611a;
 }
 
 code.doc-symbol {
@@ -82,68 +118,150 @@ code.doc-symbol {
   font-weight: bold;
 }
 
-code.doc-symbol-parameter {
-  color: var(--doc-symbol-parameter-fg-color);
-  background-color: var(--doc-symbol-parameter-bg-color);
+code.doc-symbol-ts-accessor {
+  color: var(--doc-symbol-ts-accessor-fg-color);
+  background-color: var(--doc-symbol-ts-accessor-bg-color);
 }
 
-code.doc-symbol-parameter::after {
-  content: "param";
+code.doc-symbol-ts-accessor::after {
+  content: "accessor";
 }
 
-code.doc-symbol-variable {
-  color: var(--doc-symbol-variable-fg-color);
-  background-color: var(--doc-symbol-variable-bg-color);
+code.doc-symbol-ts-attribute {
+  color: var(--doc-symbol-ts-attribute-fg-color);
+  background-color: var(--doc-symbol-ts-attribute-bg-color);
 }
 
-code.doc-symbol-variable::after {
-  content: "var";
+code.doc-symbol-ts-attribute::after {
+  content: "attribute";
 }
 
-code.doc-symbol-function {
-  color: var(--doc-symbol-function-fg-color);
-  background-color: var(--doc-symbol-function-bg-color);
+code.doc-symbol-ts-class {
+  color: var(--doc-symbol-ts-class-fg-color);
+  background-color: var(--doc-symbol-ts-class-bg-color);
 }
 
-code.doc-symbol-function::after {
-  content: "func";
+code.doc-symbol-ts-class::after {
+  content: "class";
 }
 
-code.doc-symbol-method {
-  color: var(--doc-symbol-method-fg-color);
-  background-color: var(--doc-symbol-method-bg-color);
+code.doc-symbol-ts-constructor {
+  color: var(--doc-symbol-ts-constructor-fg-color);
+  background-color: var(--doc-symbol-ts-constructor-bg-color);
 }
 
-code.doc-symbol-method::after {
-  content: "meth";
+code.doc-symbol-ts-constructor::after {
+  content: "constructor";
 }
 
-code.doc-symbol-property {
-  color: var(--doc-symbol-property-fg-color);
-  background-color: var(--doc-symbol-property-bg-color);
+code.doc-symbol-ts-enum {
+  color: var(--doc-symbol-ts-enum-fg-color);
+  background-color: var(--doc-symbol-ts-enum-bg-color);
 }
 
-code.doc-symbol-property::after {
-  content: "prop";
+code.doc-symbol-ts-enum::after {
+  content: "enum";
 }
 
-code.doc-symbol-interface {
-  color: var(--doc-symbol-interface-fg-color);
-  background-color: var(--doc-symbol-interface-bg-color);
+code.doc-symbol-ts-enum_member {
+  color: var(--doc-symbol-ts-enum_member-fg-color);
+  background-color: var(--doc-symbol-ts-enum_member-bg-color);
 }
 
-code.doc-symbol-interface::after {
-  content: "intf";
+code.doc-symbol-ts-enum_member::after {
+  content: "enum-member";
 }
 
-code.doc-symbol-module {
-  color: var(--doc-symbol-module-fg-color);
-  background-color: var(--doc-symbol-module-bg-color);
+code.doc-symbol-ts-interface {
+  color: var(--doc-symbol-ts-interface-fg-color);
+  background-color: var(--doc-symbol-ts-interface-bg-color);
 }
 
-code.doc-symbol-module::after {
-  content: "mod";
+code.doc-symbol-ts-interface::after {
+  content: "interface";
 }
+
+code.doc-symbol-ts-method {
+  color: var(--doc-symbol-ts-method-fg-color);
+  background-color: var(--doc-symbol-ts-method-bg-color);
+}
+
+code.doc-symbol-ts-method::after {
+  content: "method";
+}
+
+code.doc-symbol-ts-module {
+  color: var(--doc-symbol-ts-module-fg-color);
+  background-color: var(--doc-symbol-ts-module-bg-color);
+}
+
+code.doc-symbol-ts-module::after {
+  content: "module";
+}
+
+code.doc-symbol-ts-namespace {
+  color: var(--doc-symbol-ts-namespace-fg-color);
+  background-color: var(--doc-symbol-ts-namespace-bg-color);
+}
+
+code.doc-symbol-ts-namespace::after {
+  content: "namespace";
+}
+
+code.doc-symbol-ts-parameter {
+  color: var(--doc-symbol-ts-parameter-fg-color);
+  background-color: var(--doc-symbol-ts-parameter-bg-color);
+}
+
+code.doc-symbol-ts-parameter::after {
+  content: "parameter";
+}
+
+code.doc-symbol-ts-project {
+  color: var(--doc-symbol-ts-project-fg-color);
+  background-color: var(--doc-symbol-ts-project-bg-color);
+}
+
+code.doc-symbol-ts-project::after {
+  content: "project";
+}
+
+code.doc-symbol-ts-property {
+  color: var(--doc-symbol-ts-property-fg-color);
+  background-color: var(--doc-symbol-ts-property-bg-color);
+}
+
+code.doc-symbol-ts-property::after {
+  content: "property";
+}
+
+code.doc-symbol-ts-type {
+  color: var(--doc-symbol-ts-type-fg-color);
+  background-color: var(--doc-symbol-ts-type-bg-color);
+}
+
+code.doc-symbol-ts-type::after {
+  content: "type";
+}
+
+code.doc-symbol-ts-type_alias {
+  color: var(--doc-symbol-ts-type_alias-fg-color);
+  background-color: var(--doc-symbol-ts-type_alias-bg-color);
+}
+
+code.doc-symbol-ts-type_alias::after {
+  content: "type-alias";
+}
+
+code.doc-symbol-ts-variable {
+  color: var(--doc-symbol-ts-variable-fg-color);
+  background-color: var(--doc-symbol-ts-variable-bg-color);
+}
+
+code.doc-symbol-ts-variable::after {
+  content: "variable";
+}
+
 
 /* Avoid breaking parameter names, etc. in table cells. */
 .doc-contents td code {
@@ -188,6 +306,28 @@ code.doc-symbol-module::after {
   font-weight: bold;
 }
 
+/* Backlinks crumb separator. */
+.doc-backlink-crumb {
+  display: inline-flex;
+  gap: .2rem;
+  white-space: nowrap;
+  align-items: center;
+  vertical-align: middle;
+}
+.doc-backlink-crumb:not(:first-child)::before {
+  background-color: var(--md-default-fg-color--lighter);
+  content: "";
+  display: inline;
+  height: 1rem;
+  --md-path-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>');
+  -webkit-mask-image: var(--md-path-icon);
+  mask-image: var(--md-path-icon);
+  width: 1rem;
+}
+.doc-backlink-crumb.last {
+  font-weight: bold;
+}
+
 /* Symbols in Navigation and ToC. */
 :root, :host,
 [data-md-color-scheme="default"] {
@@ -229,7 +369,8 @@ code.doc-symbol {
   font-weight: bold;
 }
 
-code.doc-symbol-parameter {
+code.doc-symbol-parameter,
+a code.doc-symbol-parameter {
   color: var(--doc-symbol-parameter-fg-color);
   background-color: var(--doc-symbol-parameter-bg-color);
 }
@@ -238,7 +379,8 @@ code.doc-symbol-parameter::after {
   content: "param";
 }
 
-code.doc-symbol-attribute {
+code.doc-symbol-attribute,
+a code.doc-symbol-attribute {
   color: var(--doc-symbol-attribute-fg-color);
   background-color: var(--doc-symbol-attribute-bg-color);
 }
@@ -247,7 +389,8 @@ code.doc-symbol-attribute::after {
   content: "attr";
 }
 
-code.doc-symbol-function {
+code.doc-symbol-function,
+a code.doc-symbol-function {
   color: var(--doc-symbol-function-fg-color);
   background-color: var(--doc-symbol-function-bg-color);
 }
@@ -256,7 +399,8 @@ code.doc-symbol-function::after {
   content: "func";
 }
 
-code.doc-symbol-method {
+code.doc-symbol-method,
+a code.doc-symbol-method {
   color: var(--doc-symbol-method-fg-color);
   background-color: var(--doc-symbol-method-bg-color);
 }
@@ -265,7 +409,8 @@ code.doc-symbol-method::after {
   content: "meth";
 }
 
-code.doc-symbol-class {
+code.doc-symbol-class,
+a code.doc-symbol-class {
   color: var(--doc-symbol-class-fg-color);
   background-color: var(--doc-symbol-class-bg-color);
 }
@@ -274,7 +419,8 @@ code.doc-symbol-class::after {
   content: "class";
 }
 
-code.doc-symbol-module {
+code.doc-symbol-module,
+a code.doc-symbol-module {
   color: var(--doc-symbol-module-fg-color);
   background-color: var(--doc-symbol-module-bg-color);
 }
