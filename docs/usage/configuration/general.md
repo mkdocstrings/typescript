@@ -12,6 +12,7 @@ Local `extra` options will be merged into the global `extra` option:
 ```yaml title="in mkdocs.yml (global configuration)"
 plugins:
 - mkdocstrings:
+    default_handler: typescript
     handlers:
       typescript:
         options:
@@ -20,10 +21,10 @@ plugins:
 ```
 
 ```md title="in docs/some_page.md (local configuration)"
-::: your_package.your_module.your_func
+::: @owner/packageName
     options:
       extra:
         foo: bar
 ```
 
-...will inject both `hello` and `foo` into the Jinja context when rendering `your_package.your_module.your_func`.
+...will inject both `hello` and `foo` into the Jinja context when rendering `@owner/packageName`.

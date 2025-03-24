@@ -66,7 +66,21 @@ Again, update entrypoints to match your file and package layout. See [TypeDoc's 
 
 You are now able to use the TypeScript handler to inject API docs in your Markdown pages by referencing package names:
 
-```python
+```md
 ::: @owner/packageName
     handler: typescript
+```
+
+You can set the Typescript handler as default handler:
+
+```yaml
+plugins:
+- mkdocstrings:
+    default_handler: typescript
+```
+
+By setting it as default handler you can omit it when injecting documentation:
+
+```md
+::: @owner/packageName
 ```

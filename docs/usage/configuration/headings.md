@@ -10,7 +10,7 @@ A custom string to use as the heading of the root object (i.e. the object specif
 WARNING: **Not advised to be used as a global configuration option.** This option is not advised to be used as a global configuration option, as it will override the default heading for all objects. It is recommended to use it only in specific cases where you want to override the heading for a specific object.
 
 ```md title="in docs/some_page.md (local configuration)"
-::: path.to.module
+::: @owner/package
     options:
       heading: "My fancy module"
 ```
@@ -32,6 +32,7 @@ If you set it to 3, then headings will start with `<h3>`.
 ```yaml title="in mkdocs.yml (global configuration)"
 plugins:
 - mkdocstrings:
+    default_handler: typescript
     handlers:
       typescript:
         options:
@@ -39,7 +40,7 @@ plugins:
 ```
 
 ```md title="or in docs/some_page.md (local configuration)"
-::: path.to.module
+::: @owner/package
     options:
       heading_level: 3
 ```
@@ -102,6 +103,7 @@ To customize symbols, see [Customizing symbol types](../customization.md/#symbol
 ```yaml title="in mkdocs.yml (global configuration)"
 plugins:
 - mkdocstrings:
+    default_handler: typescript
     handlers:
       typescript:
         options:
@@ -109,7 +111,7 @@ plugins:
 ```
 
 ```md title="or in docs/some_page.md (local configuration)"
-::: package.module
+::: @owner/package
     options:
       show_symbol_type_heading: false
 ```
@@ -190,6 +192,7 @@ To customize symbols, see [Customizing symbol types](../customization.md/#symbol
 ```yaml title="in mkdocs.yml (global configuration)"
 plugins:
 - mkdocstrings:
+    default_handler: typescript
     handlers:
       typescript:
         options:
@@ -197,7 +200,7 @@ plugins:
 ```
 
 ```md title="or in docs/some_page.md (local configuration)"
-::: package.module
+::: @owner/package
     options:
       show_symbol_type_toc: false
 ```
@@ -262,8 +265,8 @@ WARNING: **Not advised to be used as a global configuration option.** This optio
 NOTE: **Use with/without `heading`.** If you use this option without specifying a custom `heading`, the default heading will be used in the page, but the label in the Table of Contents will be the one you specified. By providing both an option for `heading` and `toc_label`, we leave the customization entirely up to you.
 
 ```md title="in docs/some_page.md (local configuration)"
-::: path.to.module
+::: @owner/package
     options:
-      heading: "My fancy module"
-      toc_label: "My fancy module"
+      heading: "My fancy package"
+      toc_label: "My fancy package"
 ```
