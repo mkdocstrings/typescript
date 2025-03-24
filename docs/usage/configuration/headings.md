@@ -83,7 +83,6 @@ This option will prefix headings with
 <code class="doc-symbol doc-symbol-ts-attribute"></code>,
 <code class="doc-symbol doc-symbol-ts-class"></code>,
 <code class="doc-symbol doc-symbol-ts-constructor"></code>,
-<code class="doc-symbol doc-symbol-ts-data"></code>,
 <code class="doc-symbol doc-symbol-ts-enum"></code>,
 <code class="doc-symbol doc-symbol-ts-enum_member"></code>,
 <code class="doc-symbol doc-symbol-ts-interface"></code>,
@@ -124,7 +123,6 @@ plugins:
 <h2><code class="doc-symbol doc-symbol-ts-attribute"></code> <code>foo</code></h2><p>Docstring of the attribute.</p>
 <h2><code class="doc-symbol doc-symbol-ts-class"></code> <code>Foo</code></h2><p>Docstring of the class.</p>
 <h2><code class="doc-symbol doc-symbol-ts-constructor"></code> <code>foo</code></h2><p>Docstring of the constructor.</p>
-<h2><code class="doc-symbol doc-symbol-ts-data"></code> <code>foo</code></h2><p>Docstring of the data.</p>
 <h2><code class="doc-symbol doc-symbol-ts-enum"></code> <code>Foo</code></h2><p>Docstring of the enum.</p>
 <h2><code class="doc-symbol doc-symbol-ts-enum_member"></code> <code>foo</code></h2><p>Docstring of the enum member.</p>
 <h2><code class="doc-symbol doc-symbol-ts-interface"></code> <code>Foo</code></h2><p>Docstring of the interface.</p>
@@ -172,7 +170,6 @@ This option will prefix items in the ToC with
 <code class="doc-symbol doc-symbol-ts-attribute"></code>,
 <code class="doc-symbol doc-symbol-ts-class"></code>,
 <code class="doc-symbol doc-symbol-ts-constructor"></code>,
-<code class="doc-symbol doc-symbol-ts-data"></code>,
 <code class="doc-symbol doc-symbol-ts-enum"></code>,
 <code class="doc-symbol doc-symbol-ts-enum_member"></code>,
 <code class="doc-symbol doc-symbol-ts-interface"></code>,
@@ -214,7 +211,6 @@ plugins:
   <li><code class="doc-symbol doc-symbol-ts-attribute"></code> foo</li>
   <li><code class="doc-symbol doc-symbol-ts-class"></code> Foo</li>
   <li><code class="doc-symbol doc-symbol-ts-constructor"></code> foo</li>
-  <li><code class="doc-symbol doc-symbol-ts-data"></code> foo</li>
   <li><code class="doc-symbol doc-symbol-ts-enum"></code> Foo</li>
   <li><code class="doc-symbol doc-symbol-ts-enum_member"></code> foo</li>
   <li><code class="doc-symbol doc-symbol-ts-interface"></code> Foo</li>

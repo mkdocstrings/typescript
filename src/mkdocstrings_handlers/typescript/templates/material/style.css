@@ -43,7 +43,6 @@
   --doc-symbol-ts-attribute-fg-color: #6f42c1;
   --doc-symbol-ts-class-fg-color: #22863a;
   --doc-symbol-ts-constructor-fg-color: #1f66ff;
-  --doc-symbol-ts-data-fg-color: #0366d6;
   --doc-symbol-ts-enum-fg-color: #6f42c1;
   --doc-symbol-ts-enum_member-fg-color: #f0ad4e;
   --doc-symbol-ts-interface-fg-color: #6f42c1;
@@ -61,7 +60,6 @@
   --doc-symbol-ts-attribute-bg-color: #6f42c11a;
   --doc-symbol-ts-class-bg-color: #22863a1a;
   --doc-symbol-ts-constructor-bg-color: #1f66ff1a;
-  --doc-symbol-ts-data-bg-color: #0366d61a;
   --doc-symbol-ts-enum-bg-color: #6f42c11a;
   --doc-symbol-ts-enum_member-bg-color: #f0ad4e1a;
   --doc-symbol-ts-interface-bg-color: #6f42c11a;
@@ -81,7 +79,6 @@
   --doc-symbol-ts-attribute-fg-color: #d4a5f0;
   --doc-symbol-ts-class-fg-color: #78e7d1;
   --doc-symbol-ts-constructor-fg-color: #6ba3ff;
-  --doc-symbol-ts-data-fg-color: #58a6ff;
   --doc-symbol-ts-enum-fg-color: #d4a5f0;
   --doc-symbol-ts-enum_member-fg-color: #ffb864;
   --doc-symbol-ts-interface-fg-color: #d4a5f0;
@@ -99,7 +96,6 @@
   --doc-symbol-ts-attribute-bg-color: #d4a5f01a;
   --doc-symbol-ts-class-bg-color: #78e7d11a;
   --doc-symbol-ts-constructor-bg-color: #6ba3ff1a;
-  --doc-symbol-ts-data-bg-color: #58a6ff1a;
   --doc-symbol-ts-enum-bg-color: #d4a5f01a;
   --doc-symbol-ts-enum_member-bg-color: #ffb8641a;
   --doc-symbol-ts-interface-bg-color: #d4a5f01a;
@@ -155,15 +151,6 @@ code.doc-symbol-ts-constructor {
 
 code.doc-symbol-ts-constructor::after {
   content: "constructor";
-}
-
-code.doc-symbol-ts-data {
-  color: var(--doc-symbol-ts-data-fg-color);
-  background-color: var(--doc-symbol-ts-data-bg-color);
-}
-
-code.doc-symbol-ts-data::after {
-  content: "data";
 }
 
 code.doc-symbol-ts-enum {

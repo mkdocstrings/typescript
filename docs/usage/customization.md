@@ -33,7 +33,6 @@ You can customize the colors of the symbol types (see [`show_symbol_type_heading
   --doc-symbol-ts-attribute-fg-color: #6f42c1;
   --doc-symbol-ts-class-fg-color: #22863a;
   --doc-symbol-ts-constructor-fg-color: #1f66ff;
-  --doc-symbol-ts-data-fg-color: #0366d6;
   --doc-symbol-ts-enum-fg-color: #6f42c1;
   --doc-symbol-ts-enum_member-fg-color: #f0ad4e;
   --doc-symbol-ts-interface-fg-color: #6f42c1;
@@ -51,7 +50,6 @@ You can customize the colors of the symbol types (see [`show_symbol_type_heading
   --doc-symbol-ts-attribute-bg-color: #6f42c11a;
   --doc-symbol-ts-class-bg-color: #22863a1a;
   --doc-symbol-ts-constructor-bg-color: #1f66ff1a;
-  --doc-symbol-ts-data-bg-color: #0366d61a;
   --doc-symbol-ts-enum-bg-color: #6f42c11a;
   --doc-symbol-ts-enum_member-bg-color: #f0ad4e1a;
   --doc-symbol-ts-interface-bg-color: #6f42c11a;
@@ -71,7 +69,6 @@ You can customize the colors of the symbol types (see [`show_symbol_type_heading
   --doc-symbol-ts-attribute-fg-color: #d4a5f0;
   --doc-symbol-ts-class-fg-color: #78e7d1;
   --doc-symbol-ts-constructor-fg-color: #6ba3ff;
-  --doc-symbol-ts-data-fg-color: #58a6ff;
   --doc-symbol-ts-enum-fg-color: #d4a5f0;
   --doc-symbol-ts-enum_member-fg-color: #ffb864;
   --doc-symbol-ts-interface-fg-color: #d4a5f0;
@@ -89,7 +86,6 @@ You can customize the colors of the symbol types (see [`show_symbol_type_heading
   --doc-symbol-ts-attribute-bg-color: #d4a5f01a;
   --doc-symbol-ts-class-bg-color: #78e7d11a;
   --doc-symbol-ts-constructor-bg-color: #6ba3ff1a;
-  --doc-symbol-ts-data-bg-color: #58a6ff1a;
   --doc-symbol-ts-enum-bg-color: #d4a5f01a;
   --doc-symbol-ts-enum_member-bg-color: #ffb8641a;
   --doc-symbol-ts-interface-bg-color: #d4a5f01a;
@@ -109,8 +105,8 @@ The `[data-md-color-scheme="*"]` selectors work with the [Material for MkDocs] t
 
 ```css title="docs/css/mkdocstrings.css"
 :root {
-  --doc-symbol-ts-data-fg-color: #d1b619;
-  --doc-symbol-ts-data-bg-color: #d1b6191a;
+  --doc-symbol-ts-class-fg-color: #d1b619;
+  --doc-symbol-ts-class-bg-color: #d1b6191a;
 }
 ```
 
@@ -120,18 +116,18 @@ The `[data-md-color-scheme="*"]` selectors work with the [Material for MkDocs] t
 <div id="preview-symbol-colors">
   <style>
     [data-md-color-scheme="default"] #preview-symbol-colors {
-      --doc-symbol-ts-data-fg-color: #d1b619;
-      --doc-symbol-ts-data-bg-color: #d1b6191a;
+      --doc-symbol-ts-class-fg-color: #d1b619;
+      --doc-symbol-ts-class-bg-color: #d1b6191a;
     }
 
     [data-md-color-scheme="slate"] #preview-symbol-colors {
-      --doc-symbol-ts-data-fg-color: #46c2cb;
-      --doc-symbol-ts-data-bg-color: #46c2cb1a;
+      --doc-symbol-ts-class-fg-color: #46c2cb;
+      --doc-symbol-ts-class-bg-color: #46c2cb1a;
     }
   </style>
   <p>
     Try cycling through the themes to see the colors for each theme:
-    <code class="doc-symbol doc-symbol-ts-data"></code
+    <code class="doc-symbol doc-symbol-ts-class"></code
   </p>
 </div>
 
@@ -142,8 +138,8 @@ The `[data-md-color-scheme="*"]` selectors work with the [Material for MkDocs] t
 You can also change the actual symbol names. For example, to use single letters instead of truncated types:
 
 ```css title="docs/css/mkdocstrings.css"
-.doc-symbol-ts-data::after {
-  content: "D";
+.doc-symbol-ts-class::after {
+  content: "C";
 }
 ```
 
@@ -152,12 +148,12 @@ You can also change the actual symbol names. For example, to use single letters 
 
 <div id="preview-symbol-names">
   <style>
-    #preview-symbol-names .doc-symbol-ts-data::after {
-      content: "D";
+    #preview-symbol-names .doc-symbol-ts-class::after {
+      content: "C";
     }
   </style>
   <ul>
-    <li>Data: <code class="doc-symbol doc-symbol-ts-data"></code></li>
+    <li>Class: <code class="doc-symbol doc-symbol-ts-class"></code></li>
   </ul>
 </div>
 
