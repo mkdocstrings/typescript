@@ -2,7 +2,7 @@
 
 <div class="doc doc-object doc-accessor">
   {% with obj = accessor, html_id = accessor.path %}
-  
+
     {% if root %}
       {% set show_full_path = config.show_root_full_path %}
       {% set root_members = True %}
@@ -12,42 +12,42 @@
     {% else %}
       {% set show_full_path = config.show_object_full_path %}
     {% endif %}
-  
+
     {% set accessor_name = accessor.path if show_full_path else accessor.name %}
-  
+
     {% if not root or config.show_root_heading %}
       {% filter heading(
           heading_level,
           role="accessor",
           id=html_id,
           class="doc doc-heading",
-          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-accessor"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + accessor.name,
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-accessor"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + accessor.name,
       ) %}
-  
+
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-accessor"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-ts-accessor"></code>{% endif %}
           {% if config.separate_signature %}
             <span class="doc doc-object-name doc-accessor-name">{{ accessor_name }}</span>
           {% else %}
             <code>{{ accessor_name }}</code>
           {% endif %}
         {% endblock heading %}
-  
+
       {% endfilter %}
-  
+
     {% else %}
       {% if config.show_root_toc_entry %}
         {% filter heading(heading_level,
             role="accessor",
             id=html_id,
-            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-accessor"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + accessor.name,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-accessor"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + accessor.name,
             hidden=True,
         ) %}
         {% endfilter %}
       {% endif %}
       {% set heading_level = heading_level - 1 %}
     {% endif %}
-  
+
     <div class="doc doc-contents {% if root %}first{% endif %}">
       {% block contents scoped %}
         {% block docstring scoped %}
@@ -71,7 +71,6 @@
         {% endblock getsignature %}
       {% endblock contents %}
     </div>
-  
+
   {% endwith %}
 </div>
-  

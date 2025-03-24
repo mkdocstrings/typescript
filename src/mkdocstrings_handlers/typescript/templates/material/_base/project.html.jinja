@@ -21,11 +21,11 @@
           role="project",
           id=html_id,
           class="doc doc-heading",
-          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-project"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + project.name,
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-project"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + project.name,
       ) %}
 
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-project"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-ts-project"></code>{% endif %}
           {% if config.separate_signature %}
             <span class="doc doc-object-name doc-project-name">{{ project_name }}</span>
           {% else %}
@@ -40,7 +40,7 @@
         {% filter heading(heading_level,
             role="project",
             id=html_id,
-            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-project"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + project.name,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-project"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + project.name,
             hidden=True,
         ) %}
         {% endfilter %}

@@ -22,11 +22,11 @@
           role="constructor_signature",
           id=html_id,
           class="doc doc-heading",
-          toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + constructor_signature.name,
+          toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + constructor_signature.name,
       ) %}
 
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-{{ symbol_type }}"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-ts-{{ symbol_type }}"></code>{% endif %}
           {% if config.separate_signature %}
             <span class="doc doc-object-name doc-constructor_signature-name">{{ constructor_signature_name }}</span>
           {% else %}
@@ -43,7 +43,7 @@
           {% for signature in constructor_signature.signatures %}
             {% filter highlight(language="typescript", inline=False) %}
               {{ signature.source_contents }}
-            {% endfilter %} 
+            {% endfilter %}
           {% endfor %}
         {% endif %}
       {% endblock signature %}
@@ -55,7 +55,7 @@
             heading_level,
             role="constructor_signature",
             id=html_id,
-            toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + constructor_signature.name,
+            toc_label=(('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-' + symbol_type + '"></code>&nbsp;')|safe if config.show_symbol_type_toc else '') + constructor_signature.name,
             hidden=True,
         ) %}
         {% endfilter %}

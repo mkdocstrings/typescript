@@ -2,7 +2,7 @@
 
 <div class="doc doc-object doc-variable">
   {% with obj = variable, html_id = variable.path %}
-  
+
     {% if root %}
       {% set show_full_path = config.show_root_full_path %}
       {% set root_members = True %}
@@ -12,42 +12,42 @@
     {% else %}
       {% set show_full_path = config.show_object_full_path %}
     {% endif %}
-  
+
     {% set variable_name = variable.path if show_full_path else variable.name %}
-  
+
     {% if not root or config.show_root_heading %}
       {% filter heading(
           heading_level,
           role="variable",
           id=html_id,
           class="doc doc-heading",
-          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-variable"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + variable.name,
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-variable"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + variable.name,
       ) %}
-  
+
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-variable"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-ts-variable"></code>{% endif %}
           {% if config.separate_signature %}
             <span class="doc doc-object-name doc-variable-name">{{ variable_name }}</span>
           {% else %}
             <code>{{ variable_name }}</code>
           {% endif %}
         {% endblock heading %}
-  
+
       {% endfilter %}
-  
+
     {% else %}
       {% if config.show_root_toc_entry %}
         {% filter heading(heading_level,
             role="variable",
             id=html_id,
-            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-variable"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + variable.name,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-variable"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + variable.name,
             hidden=True,
         ) %}
         {% endfilter %}
       {% endif %}
       {% set heading_level = heading_level - 1 %}
     {% endif %}
-  
+
     <div class="doc doc-contents {% if root %}first{% endif %}">
       {% block contents scoped %}
         {% block docstring scoped %}
@@ -62,7 +62,6 @@
         {% endblock children %}
       {% endblock contents %}
     </div>
-  
+
   {% endwith %}
   </div>
-  

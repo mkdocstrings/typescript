@@ -21,11 +21,11 @@
           role="type",
           id=html_id,
           class="doc doc-heading",
-          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-type"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type.name,
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-type"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type.name,
       ) %}
 
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-type"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-ts-type"></code>{% endif %}
           <code>{{ type_name }}</code>
         {% endblock heading %}
 
@@ -36,7 +36,7 @@
         {% filter heading(heading_level,
             role="type",
             id=html_id,
-            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-type"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type.name,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-type"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type.name,
             hidden=True,
         ) %}
         {% endfilter %}

@@ -23,7 +23,7 @@ Context:
         role="data",
         id=html_id,
         class="doc doc-heading",
-        toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-data"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + data.name,
+        toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-data"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + data.name,
       ) %}
 
       {% block heading scoped %}
@@ -31,7 +31,7 @@ Context:
 
         This block renders the heading for the data.
         -#}
-        {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-data"></code>{% endif %}
+        {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-ts-data"></code>{% endif %}
         <span class="doc doc-object-name doc-data-name">{{ config.heading if config.heading and root else data.name }}</span>
       {% endblock heading %}
 

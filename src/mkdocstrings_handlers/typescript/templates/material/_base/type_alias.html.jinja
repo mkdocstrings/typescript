@@ -2,7 +2,7 @@
 
 <div class="doc doc-object doc-type_alias">
   {% with obj = type_alias, html_id = type_alias.path %}
-  
+
     {% if root %}
       {% set show_full_path = config.show_root_full_path %}
       {% set root_members = True %}
@@ -12,42 +12,42 @@
     {% else %}
       {% set show_full_path = config.show_object_full_path %}
     {% endif %}
-  
+
     {% set type_alias_name = type_alias.path if show_full_path else type_alias.name %}
-  
+
     {% if not root or config.show_root_heading %}
       {% filter heading(
           heading_level,
           role="type_alias",
           id=html_id,
           class="doc doc-heading",
-          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-type_alias"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type_alias.name,
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-type_alias"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type_alias.name,
       ) %}
-  
+
         {% block heading scoped %}
-          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-type_alias"></code>{% endif %}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-ts-type_alias"></code>{% endif %}
           {% if config.separate_signature %}
             <span class="doc doc-object-name doc-type_alias-name">{{ type_alias_name }}</span>
           {% else %}
             <code>{{ type_alias_name }}</code>
           {% endif %}
         {% endblock heading %}
-  
+
       {% endfilter %}
-  
+
     {% else %}
       {% if config.show_root_toc_entry %}
         {% filter heading(heading_level,
             role="type_alias",
             id=html_id,
-            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-type_alias"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type_alias.name,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-ts-type_alias"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + type_alias.name,
             hidden=True,
         ) %}
         {% endfilter %}
       {% endif %}
       {% set heading_level = heading_level - 1 %}
     {% endif %}
-  
+
     <div class="doc doc-contents {% if root %}first{% endif %}">
       {% block contents scoped %}
         {% block docstring scoped %}
@@ -62,7 +62,6 @@
         {% endblock children %}
       {% endblock contents %}
     </div>
-  
+
   {% endwith %}
 </div>
-  

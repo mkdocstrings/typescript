@@ -78,11 +78,23 @@ plugins:
 Show the symbol type in headings.
 
 This option will prefix headings with
-<code class="doc-symbol doc-symbol-attribute"></code>,
-<code class="doc-symbol doc-symbol-function"></code>,
-<code class="doc-symbol doc-symbol-method"></code>,
-<code class="doc-symbol doc-symbol-class"></code> or
-<code class="doc-symbol doc-symbol-module"></code> types.
+<code class="doc-symbol doc-symbol-ts-accessor"></code>,
+<code class="doc-symbol doc-symbol-ts-attribute"></code>,
+<code class="doc-symbol doc-symbol-ts-class"></code>,
+<code class="doc-symbol doc-symbol-ts-constructor"></code>,
+<code class="doc-symbol doc-symbol-ts-data"></code>,
+<code class="doc-symbol doc-symbol-ts-enum"></code>,
+<code class="doc-symbol doc-symbol-ts-enum_member"></code>,
+<code class="doc-symbol doc-symbol-ts-interface"></code>,
+<code class="doc-symbol doc-symbol-ts-method"></code>,
+<code class="doc-symbol doc-symbol-ts-module"></code>,
+<code class="doc-symbol doc-symbol-ts-namespace"></code>,
+<code class="doc-symbol doc-symbol-ts-parameter"></code>,
+<code class="doc-symbol doc-symbol-ts-project"></code>,
+<code class="doc-symbol doc-symbol-ts-property"></code>,
+<code class="doc-symbol doc-symbol-ts-type"></code>,
+<code class="doc-symbol doc-symbol-ts-type_alias"></code> or
+<code class="doc-symbol doc-symbol-ts-variable"></code> types.
 See also [`show_symbol_type_toc`][show_symbol_type_toc].
 
 To customize symbols, see [Customizing symbol types](../customization.md/#symbol-types).
@@ -106,29 +118,43 @@ plugins:
     type: preview
 
 //// tab | With symbol type in headings
-<h1><code class="doc-symbol doc-symbol-module"></code> <code>module</code></h1>
-<p>Docstring of the module.</p>
-<h2><code class="doc-symbol doc-symbol-attribute"></code> <code>attribute</code></h2>
-<p>Docstring of the module attribute.</p>
-<h2><code class="doc-symbol doc-symbol-function"></code> <code>function</code></h2>
-<p>Docstring of the function.</p>
-<h2><code class="doc-symbol doc-symbol-class"></code> <code>Class</code></h2>
-<p>Docstring of the class.</p>
-<h3><code class="doc-symbol doc-symbol-method"></code> <code>method</code></h3>
-<p>Docstring of the method.</p>
+<h2><code class="doc-symbol doc-symbol-ts-accessor"></code> <code>foo</code></h2><p>Docstring of the accessor.</p>
+<h2><code class="doc-symbol doc-symbol-ts-attribute"></code> <code>foo</code></h2><p>Docstring of the attribute.</p>
+<h2><code class="doc-symbol doc-symbol-ts-class"></code> <code>Foo</code></h2><p>Docstring of the class.</p>
+<h2><code class="doc-symbol doc-symbol-ts-constructor"></code> <code>foo</code></h2><p>Docstring of the constructor.</p>
+<h2><code class="doc-symbol doc-symbol-ts-data"></code> <code>foo</code></h2><p>Docstring of the data.</p>
+<h2><code class="doc-symbol doc-symbol-ts-enum"></code> <code>Foo</code></h2><p>Docstring of the enum.</p>
+<h2><code class="doc-symbol doc-symbol-ts-enum_member"></code> <code>foo</code></h2><p>Docstring of the enum member.</p>
+<h2><code class="doc-symbol doc-symbol-ts-interface"></code> <code>Foo</code></h2><p>Docstring of the interface.</p>
+<h2><code class="doc-symbol doc-symbol-ts-method"></code> <code>foo</code></h2><p>Docstring of the method.</p>
+<h2><code class="doc-symbol doc-symbol-ts-module"></code> <code>foo</code></h2><p>Docstring of the module.</p>
+<h2><code class="doc-symbol doc-symbol-ts-namespace"></code> <code>Foo</code></h2><p>Docstring of the namespace.</p>
+<h2><code class="doc-symbol doc-symbol-ts-parameter"></code> <code>foo</code></h2><p>Docstring of the parameter.</p>
+<h2><code class="doc-symbol doc-symbol-ts-project"></code> <code>foo</code></h2><p>Docstring of the project.</p>
+<h2><code class="doc-symbol doc-symbol-ts-property"></code> <code>foo</code></h2><p>Docstring of the property.</p>
+<h2><code class="doc-symbol doc-symbol-ts-type"></code> <code>Foo</code></h2><p>Docstring of the type.</p>
+<h2><code class="doc-symbol doc-symbol-ts-type_alias"></code> <code>Foo</code></h2><p>Docstring of the type alias.</p>
+<h2><code class="doc-symbol doc-symbol-ts-variable"></code> <code>foo</code></h2><p>Docstring of the variable.</p>
 ////
 
 //// tab | Without symbol type in headings
-<h1><code>module</code></h1>
-<p>Docstring of the module.</p>
-<h2><code>attribute</code></h2>
-<p>Docstring of the module attribute.</p>
-<h2><code>function</code></h2>
-<p>Docstring of the function.</p>
-<h2><code>Class</code></h2>
-<p>Docstring of the class.</p>
-<h3><code>method</code></h3>
-<p>Docstring of the method.</p>
+<h2><code>foo</code></h2><p>Docstring of the accessor.</p>
+<h2><code>foo</code></h2><p>Docstring of the attribute.</p>
+<h2><code>Foo</code></h2><p>Docstring of the class.</p>
+<h2><code>foo</code></h2><p>Docstring of the constructor.</p>
+<h2><code>foo</code></h2><p>Docstring of the data.</p>
+<h2><code>Foo</code></h2><p>Docstring of the enum.</p>
+<h2><code>foo</code></h2><p>Docstring of the enum member.</p>
+<h2><code>Foo</code></h2><p>Docstring of the interface.</p>
+<h2><code>foo</code></h2><p>Docstring of the method.</p>
+<h2><code>foo</code></h2><p>Docstring of the module.</p>
+<h2><code>Foo</code></h2><p>Docstring of the namespace.</p>
+<h2><code>foo</code></h2><p>Docstring of the parameter.</p>
+<h2><code>foo</code></h2><p>Docstring of the project.</p>
+<h2><code>foo</code></h2><p>Docstring of the property.</p>
+<h2><code>Foo</code></h2><p>Docstring of the type.</p>
+<h2><code>Foo</code></h2><p>Docstring of the type alias.</p>
+<h2><code>foo</code></h2><p>Docstring of the variable.</p>
 ////
 ///
 
@@ -140,11 +166,23 @@ plugins:
 Show the symbol type in the Table of Contents.
 
 This option will prefix items in the ToC with
-<code class="doc-symbol doc-symbol-attribute"></code>,
-<code class="doc-symbol doc-symbol-function"></code>,
-<code class="doc-symbol doc-symbol-method"></code>,
-<code class="doc-symbol doc-symbol-class"></code> or
-<code class="doc-symbol doc-symbol-module"></code> types.
+<code class="doc-symbol doc-symbol-ts-accessor"></code>,
+<code class="doc-symbol doc-symbol-ts-attribute"></code>,
+<code class="doc-symbol doc-symbol-ts-class"></code>,
+<code class="doc-symbol doc-symbol-ts-constructor"></code>,
+<code class="doc-symbol doc-symbol-ts-data"></code>,
+<code class="doc-symbol doc-symbol-ts-enum"></code>,
+<code class="doc-symbol doc-symbol-ts-enum_member"></code>,
+<code class="doc-symbol doc-symbol-ts-interface"></code>,
+<code class="doc-symbol doc-symbol-ts-method"></code>,
+<code class="doc-symbol doc-symbol-ts-module"></code>,
+<code class="doc-symbol doc-symbol-ts-namespace"></code>,
+<code class="doc-symbol doc-symbol-ts-parameter"></code>,
+<code class="doc-symbol doc-symbol-ts-project"></code>,
+<code class="doc-symbol doc-symbol-ts-property"></code>,
+<code class="doc-symbol doc-symbol-ts-type"></code>,
+<code class="doc-symbol doc-symbol-ts-type_alias"></code> or
+<code class="doc-symbol doc-symbol-ts-variable"></code> types.
 See also [`show_symbol_type_heading`][show_symbol_type_heading].
 
 To customize symbols, see [Customizing symbol types](../customization.md/#symbol-types).
@@ -169,27 +207,45 @@ plugins:
 
 //// tab | With symbol type in ToC
 <ul style="list-style: none;">
-  <li><code class="doc-symbol doc-symbol-module"></code> module</li>
-  <li><code class="doc-symbol doc-symbol-attribute"></code> attribute</li>
-  <li><code class="doc-symbol doc-symbol-function"></code> function</li>
-  <li><code class="doc-symbol doc-symbol-class"></code> Class
-    <ul style="list-style: none;">
-      <li><code class="doc-symbol doc-symbol-method"></code> method</li>
-    </ul>
-  </li>
+  <li><code class="doc-symbol doc-symbol-ts-accessor"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-attribute"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-class"></code> Foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-constructor"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-data"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-enum"></code> Foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-enum_member"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-interface"></code> Foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-method"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-module"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-namespace"></code> Foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-parameter"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-project"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-property"></code> foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-type"></code> Foo</li>
+  <li><code class="doc-symbol doc-symbol-ts-type_alias"></code> Foo</code></li>
+  <li><code class="doc-symbol doc-symbol-ts-variable"></code> foo</code></li>
 </ul>
 ////
 
 //// tab | Without symbol type in ToC
 <ul style="list-style: none;">
-  <li>module</li>
-  <li>attribute</li>
-  <li>function</li>
-  <li>Class
-    <ul style="list-style: none;">
-      <li>method</li>
-    </ul>
-  </li>
+  <li>foo</li>
+  <li>foo</li>
+  <li>Foo</li>
+  <li>foo</li>
+  <li>foo</li>
+  <li>Foo</li>
+  <li>foo</li>
+  <li>Foo</li>
+  <li>foo</li>
+  <li>foo</li>
+  <li>Foo</li>
+  <li>foo</li>
+  <li>foo</li>
+  <li>foo</li>
+  <li>Foo</li>
+  <li>Foo</li>
+  <li>foo</li>
 </ul>
 ////
 ///
