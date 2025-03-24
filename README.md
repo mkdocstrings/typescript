@@ -10,9 +10,7 @@ Feedback is welcome.
 
 ## Installation
 
-This project is available to sponsors only, through my Insiders program.
-See Insiders [explanation](https://mkdocstrings.github.io/typescript/insiders/)
-and [installation instructions](https://mkdocstrings.github.io/typescript/insiders/installation/).
+This project is available to sponsors only, through my Insiders program. See Insiders [explanation](https://mkdocstrings.github.io/typescript/insiders/) and [installation instructions](https://mkdocstrings.github.io/typescript/insiders/installation/).
 
 ## Usage
 

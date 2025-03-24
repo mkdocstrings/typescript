@@ -50,7 +50,7 @@ PASTE TRACEBACK HERE
      redacting sensitive information. -->
 
 ```bash
-python -m mkdocstrings_handlers.typescript.debug  # | xclip -selection clipboard
+python -m mkdocstrings_handlers.typescript._internal.debug  # | xclip -selection clipboard
 ```
 
 PASTE MARKDOWN OUTPUT HERE
