@@ -121,7 +121,7 @@ class TypescriptHandler(BaseHandler):
         # If we couldn't find the object, raise an error.
         raise CollectionError(f"Could not collect {identifier}")
 
-    def render(self, data: CollectorItem, options: TypescriptOptions) -> str:
+    def render(self, data: CollectorItem, options: TypescriptOptions) -> str:  # type: ignore[override]
         """Render a template using provided data and configuration options."""
         template = self.env.get_template("dispatch.html.jinja")
         return template.render(

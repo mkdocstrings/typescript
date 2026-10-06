@@ -3,7 +3,7 @@
 [![ci](https://github.com/mkdocstrings/typescript/workflows/ci/badge.svg)](https://github.com/mkdocstrings/typescript/actions?query=workflow%3Aci)
 [![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://mkdocstrings.github.io/typescript/)
 [![pypi version](https://img.shields.io/pypi/v/mkdocstrings-typescript.svg)](https://pypi.org/project/mkdocstrings-typescript/)
-[![gitter](https://badges.gitter.im/join%20chat.svg)](https://app.gitter.im/#/room/#typescript:gitter.im)
+[![gitter](https://img.shields.io/badge/matrix-chat-4DB798.svg?style=flat)](https://app.gitter.im/#/room/#typescript:gitter.im)
 
 A Typescript handler for mkdocstrings.
 
@@ -88,3 +88,8 @@ By setting it as default handler you can omit it when injecting documentation:
 ```md
 ::: @owner/packageName
 ```
+
+## Sponsors
+
+<!-- sponsors-start -->
+<!-- sponsors-end -->
