@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.1](https://github.com/mkdocstrings/typescript/releases/tag/0.1.1) - 2026-10-06
+
+<small>[Compare with 0.1.0](https://github.com/mkdocstrings/typescript/compare/0.1.0...0.1.1)</small>
+
+### Build
+
+- Drop support for Python 3.10 ([29d2588](https://github.com/mkdocstrings/typescript/commit/29d2588839d3cce5f6a28c82d92df4949166cdb9) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Remove `data` symbol type (coming from template) ([9688535](https://github.com/mkdocstrings/typescript/commit/9688535c0d25d77394cd347ce087a7aed55974a3) by Timothée Mazzucotelli).
+
 ## [0.1.0](https://github.com/mkdocstrings/typescript/releases/tag/0.1.0) - 2025-03-24
 
 <small>[Compare with 0.0.1](https://github.com/mkdocstrings/typescript/compare/0.0.1...0.1.0)</small>
