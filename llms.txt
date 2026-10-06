@@ -1,0 +1,12 @@
+# mkdocstrings-typescript
+
+> A Typescript handler for mkdocstrings.
+
+## Usage
+
+- [Overview](https://mkdocstrings.github.io/typescript/index.md)
+
+## API
+
+- [API reference](https://mkdocstrings.github.io/typescript/reference/api/index.md)
+
